@@ -1,0 +1,40 @@
+.button {
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  color: white;
+  border-radius: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-yellow {
+  background-color: #ffb83c;
+  &:hover {
+    background-color: #ffb73cd7;
+  }
+}
+.btn-blue {
+  background-color: #375aab;
+  &:hover {
+    background-color: #375aabdc;
+  }
+}
+.btn-max {
+  padding: 2rem;
+
+  width: 100%;
+}
+.btn-medium {
+  padding: 2rem;
+
+  margin: auto;
+  width: 33rem;
+}
+.btn-small {
+  padding: 1rem;
+  margin-bottom: 0;
+}

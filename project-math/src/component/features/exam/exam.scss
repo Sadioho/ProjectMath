@@ -1,0 +1,38 @@
+.exam {
+  &__title {
+    padding-bottom: 2rem;
+    font-size: 2.2rem;
+  }
+  &__detail-question {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    background-color: rgba(128, 128, 128, 0.281);
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+}
+.finish{
+  text-align: center;
+  .red{
+    color: red;
+  }
+  &__title{
+    font-size: 1.6rem;
+  }
+  &__content{
+    display: flex;
+    justify-content: center;
+    &-box{
+      width: 18rem;
+      font-size: 1.6rem;
+      background-color: deepskyblue;
+      padding: 4rem 2rem;
+      margin: 2rem;
+      border-radius: 2rem;
+      color: white;
+    }
+  }
+}

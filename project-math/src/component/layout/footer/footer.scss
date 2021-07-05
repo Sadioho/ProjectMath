@@ -1,0 +1,42 @@
+.footer {
+  font-size: 1.3rem;
+  background-color: #3a4bcd;
+  margin-top: 5rem;
+  &__logo {
+      text-align: center;
+      padding: 5rem 0;
+      
+  }
+  &__widget {
+    padding: 5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.692);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.692);
+  }
+  &__nav {
+      display: flex;
+      justify-content: space-between;
+    &_title {
+      padding: 0.6rem;
+      &:first-child {
+        a {
+          color: #fc0;
+          font-weight: bold;
+        }
+      }
+      a {
+        color: white;
+      }
+    }
+  }
+  &__coppyright{
+      text-align: center;
+      color: white;
+      padding: 5rem;
+  }
+  li {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+  }
+}

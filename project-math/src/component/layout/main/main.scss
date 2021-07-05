@@ -1,0 +1,65 @@
+.main {
+  padding-bottom: 5rem 0;
+  height: max-content;
+  min-height: 100vh;
+  position: relative;
+  &__content {
+    padding-right: 3rem;
+    &_item {
+      border-radius: 2rem;
+      border: 1px solid grey;
+      padding: 2rem;
+    }
+  }
+  &__ratings {
+    height: 40rem;
+    border-radius: 0.5rem;
+    &_header {
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      background-color: #c7c7c7;
+      border-radius: 0.5rem;
+    }
+    &_text {
+      text-align: center;
+      font-size: 1.3rem;
+      color: red;
+      padding: 1rem 0;
+    }
+    &_main {
+      font-size: 1.2rem;
+      // padding: 1rem;
+    }
+  }
+}
+.overlay {
+  position: absolute;
+  border-radius: 1rem;
+  width: 40rem;
+  text-align: center;
+  padding: 2rem;
+  background-color: rgb(255, 255, 255);
+  z-index: 2;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 43px 1px rgba(0, 0, 0, 0.2);
+  &__content {
+    padding: 1rem;
+    &-title {
+      font-size: 2.2rem;
+    }
+    p {
+      font-size: 1.3rem;
+    }
+  }
+  &__button {
+    display: flex;
+    justify-content: space-evenly;
+    .btn-overlay {
+      width: 13rem;
+      padding: 1.2rem 0;
+    }
+  }
+}

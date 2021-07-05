@@ -1,0 +1,100 @@
+{
+    "list_questions": [
+        {
+            "id": "30",
+            "question": "5 + 9 = ?",
+            "results": [
+                {
+                    "name_answer": "A",
+                    "result_answer": "3"
+                },
+                {
+                    "name_answer": "B",
+                    "result_answer": "14"
+                },
+                {
+                    "name_answer": "C",
+                    "result_answer": "13"
+                },
+                {
+                    "name_answer": "D",
+                    "result_answer": "23"
+                }
+            ],
+            "result_true":  "14",
+            "name": "Câu 1"
+        },
+        {
+            "id": "33",
+            "question": "2 + 9 = ?",
+            "results": [
+                {
+                    "name_answer": "A",
+                    "result_answer": "3"
+                },
+                {
+                    "name_answer": "B",
+                    "result_answer": "11"
+                },
+                {
+                    "name_answer": "C",
+                    "result_answer": "50"
+                },
+                {
+                    "name_answer": "D",
+                    "result_answer": "100"
+                }
+            ],
+            "result_true": "11",
+            "name": "Câu 2"
+        },
+        {
+            "id": "34",
+            "question": "20+100 = ?",
+            "results": [
+                {
+                    "name_answer": "A",
+                    "result_answer": "300"
+                },
+                {
+                    "name_answer": "B",
+                    "result_answer": "120"
+                },
+                {
+                    "name_answer": "C",
+                    "result_answer": "133"
+                },
+                {
+                    "name_answer": "D",
+                    "result_answer": "141"
+                }
+            ],
+            "result_true": "120",
+            "name": "Câu 3"
+        },
+        {
+            "id": "35",
+            "question": "50 + 9 = ?",
+            "results": [
+                {
+                    "name_answer": "A",
+                    "result_answer": "99"
+                },
+                {
+                    "name_answer": "B",
+                    "result_answer": "59"
+                },
+                {
+                    "name_answer": "C",
+                    "result_answer": "22"
+                },
+                {
+                    "name_answer": "D",
+                    "result_answer": "93"
+                }
+            ],
+            "result_true": "59",
+            "name": "Câu 4"
+        }
+    ]
+}
