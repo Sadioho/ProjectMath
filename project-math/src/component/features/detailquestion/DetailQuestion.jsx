@@ -60,7 +60,7 @@ function DetailQuestion(props) {
       : setlistReview([...listReview, obj]);
   }
 
-  console.log("list review: ", listResult);
+  // console.log("list review: ", listResult);
   return (
     <div className="detail_question">
       <div key={dataFun.data[numberQuestion].id}>
@@ -97,55 +97,57 @@ function DetailQuestion(props) {
         </div>
       </div>
 
-      <div className="detail_question__toolbar">
-        <div className="detail_question__toolbar_item-1">
-          <div className="time">
-            <i className="far fa-clock">
-              <span>66:49</span>
-            </i>
-          </div>
-          <div className="check">
-            <input
-              type="checkbox"
-              id="check"
-              checked={defaultCheckedV2(
-                listReview,
-                dataFun.data[numberQuestion]
-              )}
-              onChange={(e) =>
-                setCheck(e.target.checked, dataFun.data[numberQuestion].id)
-              }
-            />
-            <label htmlFor="check"> Xem lại</label>
-          </div>
-        </div>
-        <div className="detail_question__toolbar_item-2">
-          {numberQuestion > 0 && (
-            <button className="btn-back" onClick={minus}></button>
-          )}
-          {numberQuestion >= lenghtData - 1 ? (
-            <></>
-          ) : (
-            <button className="btn-next" onClick={plus}></button>
-          )}
-
-          {numberQuestion === lenghtData - 1 ? (
-            <Button
-              className="btn-yellow btn-small"
-              content="Nộp bài"
-              onClick={handleFinish}
-            />
-          ) : (
-            <div
-              className="dots"
-              onClick={() => setlistItemQuestion(!listItemQuestion)}
-            >
-              <img src={dots} alt="" />
+      <div className="detail_question__toolbars">
+        <div className="detail_question__toolbar">
+          <div className="detail_question__toolbar_item-1">
+            <div className="time">
+              <i className="far fa-clock">
+                <span>66:49</span>
+              </i>
             </div>
-          )}
+            <div className="check">
+              <input
+                type="checkbox"
+                id="check"
+                checked={defaultChecked(
+                  listReview,
+                  dataFun.data[numberQuestion],
+                  null
+                )}
+                onChange={(e) =>
+                  setCheck(e.target.checked, dataFun.data[numberQuestion].id)
+                }
+              />
+              <label htmlFor="check"> Xem lại</label>
+            </div>
+          </div>
+          <div className="detail_question__toolbar_item-2">
+            {numberQuestion > 0 && (
+              <button className="btn-back" onClick={minus}></button>
+            )}
+            {numberQuestion >= lenghtData - 1 ? (
+              <></>
+            ) : (
+              <button className="btn-next" onClick={plus}></button>
+            )}
+
+            {numberQuestion === lenghtData - 1 ? (
+              <Button
+                className="btn-yellow btn-small"
+                content="Nộp bài"
+                onClick={handleFinish}
+              />
+            ) : (
+              <div
+                className="dots"
+                onClick={() => setlistItemQuestion(!listItemQuestion)}
+              >
+                <img src={dots} alt="" />
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      {listItemQuestion === false ? null : (
+        {listItemQuestion === false ? null : (
         <div className="list__answer">
           <div className="list__answer-header">
             <p className="list__answer-title">Bấm vào câu muốn trả lời</p>
@@ -168,6 +170,10 @@ function DetailQuestion(props) {
           </div>
         </div>
       )}
+     
+     
+      </div>
+
     </div>
   );
 }
