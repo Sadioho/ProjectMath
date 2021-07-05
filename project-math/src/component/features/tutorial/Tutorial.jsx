@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import "./tutorial.scss";
-import Checkbox from "../../../image/checkbox-icon.png";
-import Radio from "../../../image/radio-icon.png";
+import React from "react";
 import Back from "../../../image/back-question-icon.png";
+import Checkbox from "../../../image/checkbox-icon.png";
 import Next from "../../../image/next-question-icon.png";
+import Radio from "../../../image/radio-icon.png";
 import Button from "../../common/button/Button";
 import DetailQuestion from "../detailquestion/DetailQuestion";
+import "./tutorial.scss";
 function Tutorial(props) {
   return (
     <>
@@ -60,7 +59,7 @@ function Tutorial(props) {
           />
         </>
       ) : (
-        <DetailQuestion handleOver={props.handleOver}  handleResult={props.handleResult} data={props.data}/>
+        <DetailQuestion  />
       )}
     </>
   );

@@ -40,7 +40,7 @@ function Exam(props) {
               </div>
               <div className="finish__content-box">
                 <p>Điểm số</p>
-                <h1>0.00</h1>
+                <h1>{props.showResult * 2.5}</h1>
               </div>
               <div className="finish__content-box">
                 <p>Thời gian làm bài</p>

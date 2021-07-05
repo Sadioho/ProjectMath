@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Logo from "../../../image/trac-nghiem-online.png";
 import "./header.scss";
 

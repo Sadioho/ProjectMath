@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "./footer.scss";
 import LogoFooter from "../../../image/logo-footer.png";
+import "./footer.scss";
 
 function Footer(props) {
   return (

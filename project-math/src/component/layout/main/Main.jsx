@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./main.scss";
-import Exam from "../../features/exam/Exam";
 import Button from "../../common/button/Button";
+import Exam from "../../features/exam/Exam";
 import Tutorial from "../../features/tutorial/Tutorial";
-import DetailQuestion from "../../features/detailquestion/DetailQuestion";
+import "./main.scss";
+// import DetailQuestion from "../../features/detailquestion/DetailQuestion";
 
+export const DataContext = React.createContext(null);
 function Main(props) {
   const [data, setData] = useState([]);
   const [tutorial, setTutorial] = useState(false);
   const [showResult, setShowResult] = useState(0);
   const [overLay, setOverLay] = useState(false);
-  const [finish, setFinish] = useState(false)
+  const [finish, setFinish] = useState(false);
   const [exam, setExam] = useState(false);
 
   function handleExam() {
@@ -25,18 +26,24 @@ function Main(props) {
   function handleOver(data) {
     setOverLay(data);
   }
-  function handleFinish(){
-    setFinish(true)
+  function handleFinish() {
+    setFinish(true);
     setOverLay(false);
     setTutorial(false);
     setExam(false);
   }
   useEffect(() => {
-    fetch("http://localhost:3000/list_questions")
-      .then((res) => res.json())
-      .then((data) => setData(data));
+    async function fetchListQuestion() {
+      const requestUrl = "http://localhost:3000/list_question";
+      const response = await fetch(requestUrl);
+      const responseJSON = await response.json();
+      setData(responseJSON);
+    }
+    fetchListQuestion();
     return () => {};
   }, []);
+
+  // console.log(showResult);
 
   return (
     <div className="main">
@@ -51,8 +58,16 @@ function Main(props) {
               <p>Bạn đồng ý nộp bài</p>
             </div>
             <div className="overlay__button">
-              <Button onClick={()=>handleFinish()} content="Nộp bài" className="btn-yellow btn-overlay " />
-              <Button onClick={()=>handleOver(false)} content="Làm tiếp" className="btn-blue btn-overlay" />
+              <Button
+                onClick={() => handleFinish()}
+                content="Nộp bài"
+                className="btn-yellow btn-overlay "
+              />
+              <Button
+                onClick={() => handleOver(false)}
+                content="Làm tiếp"
+                className="btn-blue btn-overlay"
+              />
             </div>
           </div>
         )}
@@ -60,19 +75,26 @@ function Main(props) {
           <div className="col-9 main__content">
             <div className="main__content_item">
               {tutorial === false ? (
-                <Exam showResult={showResult}  finish={finish} data={data} handleClick={handleClick} />
-              ) : (
-                <Tutorial
+                <Exam
+                  showResult={showResult}
+                  finish={finish}
                   data={data}
-                  handleOver={handleOver}
-                  handleResult={handleResult}
-                  handleExam={handleExam} exam={exam}
+                  handleClick={handleClick}
                 />
+              ) : (
+                <DataContext.Provider
+                  value={{
+                    data: data,
+                    handleOver: handleOver,
+                    handleResult: handleResult,
+                  }}
+                >
+                  <Tutorial handleExam={handleExam} exam={exam} />
+                </DataContext.Provider>
               )}
             </div>
           </div>
           <div className="col-3 main__ratings">
-           
             {!tutorial && (
               <>
                 <div className="main__ratings_header"></div>
@@ -81,6 +103,7 @@ function Main(props) {
                 </p>
                 <div className="main__ratings_main">
                   <Button
+                    onClick={handleClick}
                     className="btn-yellow btn-max "
                     content="Có, tôi muốn thi?"
                   />
