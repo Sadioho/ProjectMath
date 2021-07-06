@@ -1,45 +1,44 @@
 import React, { useContext, useState } from "react";
+import { DataApp } from "../../../App";
+import {
+  defaultChecked, filterByResult
+} from "../../../helpers";
 import dots from "../../../image/3-dotted.png";
 import Button from "../../common/button/Button";
-import { DataContext } from "../../layout/main/Main";
+import Login from "../../layout/login/Login";
+import Clock from "../clock/Clock";
 import "./style.scss";
-import {
-  filterByResult,
-  defaultChecked,
-  defaultCheckedV2,
-} from "../../../helpers";
 
 function DetailQuestion(props) {
-  const dataFun = useContext(DataContext);
+  const stateGlobal = useContext(DataApp);
 
   const [numberQuestion, setNumberQuestion] = useState(0);
-  const lenghtData = dataFun.data.length;
-  const [listResult, setListResult] = useState([]);
+  const lenghtData = stateGlobal.data.length;
   const [listItemQuestion, setlistItemQuestion] = useState(false);
   const [listReview, setlistReview] = useState([]);
-
+ 
   let count = 0;
   function handleResult(i, id) {
     const obj = {
       result_choise: i.result_answer,
       id_question: id,
     };
-    const check = listResult.filter((item) => item.id_question !== id);
+    const check = stateGlobal.listResult.filter((item) => item.id_question !== id);
     check
-      ? setListResult([...check, obj])
-      : setListResult([...listResult, obj]);
+      ? stateGlobal.handleListResult([...check, obj])
+      : stateGlobal.handleListResult([...stateGlobal.listResult, obj]);
   }
 
   function handleFinish() {
-    listResult &&
-      listResult.map(
+    stateGlobal.listResult &&
+      stateGlobal.listResult.map(
         (item) =>
-          dataFun.data.filter(
-            (i) => i.result_true === item.result_choise.result_answer
+          stateGlobal.data.filter(
+            (i) => i.result_true === item.result_choise
           ).length !== 0 && (count += 1)
       );
-    dataFun.handleResult(count);
-    dataFun.handleOver(true);
+    stateGlobal.handleShowResult(count);
+    props.handleOver(true);
   }
 
   function plus() {
@@ -58,42 +57,41 @@ function DetailQuestion(props) {
     check
       ? setlistReview([...check, obj])
       : setlistReview([...listReview, obj]);
-  }
-
-  // console.log("list review: ", listResult);
+  } 
+  
   return (
     <div className="detail_question">
-      <div key={dataFun.data[numberQuestion].id}>
+      <div key={stateGlobal.data[numberQuestion].id}>
         <div className="question">
-          <p className="question__title">{dataFun.data[numberQuestion].name}</p>
+          <p className="question__title">{stateGlobal.data[numberQuestion].name}</p>
           <p className="question__content">
-            {dataFun.data[numberQuestion].question}
+            {stateGlobal.data[numberQuestion].question}
           </p>
         </div>
         <div className="detail_question__result">
-          {dataFun.data[numberQuestion].results.map((i, index) => (
+          {stateGlobal.data[numberQuestion].results.map((i, index) => (
             <div key={index} className="detail_question__result_item">
               <input
                 type="radio"
                 id={i.result_answer}
-                name={dataFun.data[numberQuestion].name}
+                name={stateGlobal.data[numberQuestion].name}
                 value={i.result_answer}
                 defaultChecked={defaultChecked(
-                  listResult,
-                  dataFun.data[numberQuestion],
+                  stateGlobal.listResult,
+                  stateGlobal.data[numberQuestion],
                   i
                 )}
               />
 
               <label
                 htmlFor={i.result_answer}
-                onClick={() => handleResult(i, dataFun.data[numberQuestion].id)}
+                onClick={() => handleResult(i, stateGlobal.data[numberQuestion].id)}
               >
                 {`${i.name_answer}. ${i.result_answer}`}
               </label>
             </div>
           ))}
-          {dataFun.data[numberQuestion].result}
+          {stateGlobal.data[numberQuestion].result}
         </div>
       </div>
 
@@ -102,7 +100,7 @@ function DetailQuestion(props) {
           <div className="detail_question__toolbar_item-1">
             <div className="time">
               <i className="far fa-clock">
-                <span>66:49</span>
+                <span><Clock/></span>
               </i>
             </div>
             <div className="check">
@@ -111,11 +109,11 @@ function DetailQuestion(props) {
                 id="check"
                 checked={defaultChecked(
                   listReview,
-                  dataFun.data[numberQuestion],
+                  stateGlobal.data[numberQuestion],
                   null
                 )}
                 onChange={(e) =>
-                  setCheck(e.target.checked, dataFun.data[numberQuestion].id)
+                  setCheck(e.target.checked, stateGlobal.data[numberQuestion].id)
                 }
               />
               <label htmlFor="check"> Xem lại</label>
@@ -158,9 +156,9 @@ function DetailQuestion(props) {
             />
           </div>
           <div className="list__answer-item">
-            {dataFun.data.map((item, index) => (
+            {stateGlobal.data.map((item, index) => (
               <span
-                className={filterByResult(listReview, listResult, item)}
+                className={filterByResult(listReview, stateGlobal.listResult, item)}
                 key={item.id}
                 onClick={() => setNumberQuestion(index)}
               >

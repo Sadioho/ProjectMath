@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { DataApp } from "../../../App";
 import Button from "../../common/button/Button";
 import Exam from "../../features/exam/Exam";
+import TopExam from "../../features/top_exam/TopExam";
 import Tutorial from "../../features/tutorial/Tutorial";
 import "./main.scss";
-// import DetailQuestion from "../../features/detailquestion/DetailQuestion";
 
-export const DataContext = React.createContext(null);
 function Main(props) {
-  const [data, setData] = useState([]);
+  const stateGlobal = useContext(DataApp);
+
   const [tutorial, setTutorial] = useState(false);
-  const [showResult, setShowResult] = useState(0);
   const [overLay, setOverLay] = useState(false);
   const [finish, setFinish] = useState(false);
   const [exam, setExam] = useState(false);
@@ -20,9 +20,7 @@ function Main(props) {
   function handleClick() {
     setTutorial(true);
   }
-  function handleResult(data) {
-    setShowResult(data);
-  }
+
   function handleOver(data) {
     setOverLay(data);
   }
@@ -32,16 +30,11 @@ function Main(props) {
     setTutorial(false);
     setExam(false);
   }
-  useEffect(() => {
-    async function fetchListQuestion() {
-      const requestUrl = "http://localhost:3000/list_question";
-      const response = await fetch(requestUrl);
-      const responseJSON = await response.json();
-      setData(responseJSON);
-    }
-    fetchListQuestion();
-    return () => {};
-  }, []);
+
+
+
+
+console.log("haha");
 
   return (
     <div className="main">
@@ -51,9 +44,11 @@ function Main(props) {
             <div className="overlay">
               <div className="overlay__content">
                 <h3 className="overlay__content-title">
-                  Bạn còn 40 câu chưa trả lời?
+                
+                   {`Bạn còn ${stateGlobal.data.length - stateGlobal.listResult.length} câu chưa trả lời `}
+                  
                 </h3>
-                <p>Thời gian còn (58 phút 48 giây)</p>
+                <p>Thời gian còn ({})</p>
                 <p>Bạn đồng ý nộp bài</p>
               </div>
               <div className="overlay__button">
@@ -75,22 +70,13 @@ function Main(props) {
           <div className="col-9 main__content">
             <div className="main__content_item">
               {tutorial === false ? (
-                <Exam
-                  showResult={showResult}
-                  finish={finish}
-                  data={data}
-                  handleClick={handleClick}
-                />
+                <Exam finish={finish} handleClick={handleClick} />
               ) : (
-                <DataContext.Provider
-                  value={{
-                    data: data,
-                    handleOver: handleOver,
-                    handleResult: handleResult,
-                  }}
-                >
-                  <Tutorial handleExam={handleExam} exam={exam} />
-                </DataContext.Provider>
+                <Tutorial
+                  handleExam={handleExam}
+                  exam={exam}
+                  handleOver={handleOver}
+                />
               )}
             </div>
           </div>
@@ -114,38 +100,7 @@ function Main(props) {
                 </div>
               </>
             ) : (
-              <>
-                <div className="main__scores">
-                  {" "}
-                  <h1 className="main__scores_title">
-                    Top 10/3000 lượt thi
-                  </h1>{" "}
-                </div>
-                <div className="main__listExam">
-                  <table >
-                    <tr>
-                      <th>Tên</th>
-                      <th>Điểm</th>
-                      <th>Thời gian</th>
-                    </tr>
-                    <tr>
-                      <td>🥇Hồ Xuân Anh</td>
-                      <td>10đ</td>
-                      <td>1:30</td>
-                    </tr>
-                    <tr>
-                      <td>🥈Lê Công Hòa</td>
-                      <td>10đ</td>
-                      <td>1:40</td>
-                    </tr>
-                    <tr>
-                      <td>🥉Lê Quốc Cường</td>
-                      <td>9.0đ</td>
-                      <td>2:00</td>
-                    </tr>
-                  </table>
-                </div>
-              </>
+              <TopExam />
             )}
           </div>
         </div>

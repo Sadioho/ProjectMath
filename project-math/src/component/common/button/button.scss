@@ -38,3 +38,12 @@
   padding: .7rem;
   margin-bottom: 0;
 }
+.btn-font-size{
+  font-size:1.7rem;
+}
+.btn-red{
+  background-color: #f86060;
+  &:hover {
+    background-color: #f86060ec;
+  }
+}

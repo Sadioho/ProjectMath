@@ -1,6 +1,9 @@
 import React from "react";
 import Logo from "../../../image/trac-nghiem-online.png";
 import "./header.scss";
+import {
+  Link
+} from "react-router-dom";
 
 function Header(props) {
   return (
@@ -8,7 +11,7 @@ function Header(props) {
       <div className="container">
         <div className="row align-items-center">
           <div className="header__logo ">
-            <img src={Logo} alt="" />
+           <Link to="/"> <img src={Logo} alt="" /></Link>
           </div>
           <div className="header__navbar">
             <div className="header__nav">
@@ -26,8 +29,8 @@ function Header(props) {
             </div>
             <div className="header__login">
               <a href="/#">
-                <span>Đăng nhập</span>
-                <i className="header__login_icon  fas fa-user-tie"></i>
+               <Link to="/login"> <span>Đăng nhập</span>
+                <i className="header__login_icon  fas fa-user-tie"></i></Link>
               </a>
             </div>
           </div>

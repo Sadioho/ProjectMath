@@ -59,7 +59,7 @@ function Tutorial(props) {
           />
         </>
       ) : (
-        <DetailQuestion  />
+        <DetailQuestion handleOver={props.handleOver} />
       )}
     </>
   );
