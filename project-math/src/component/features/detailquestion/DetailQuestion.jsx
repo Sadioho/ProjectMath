@@ -1,11 +1,8 @@
 import React, { useContext, useState } from "react";
 import { DataApp } from "../../../App";
-import {
-  defaultChecked, filterByResult
-} from "../../../helpers";
+import { defaultChecked, filterByResult } from "../../../helpers";
 import dots from "../../../image/3-dotted.png";
 import Button from "../../common/button/Button";
-import Login from "../../layout/login/Login";
 import Clock from "../clock/Clock";
 import "./style.scss";
 
@@ -16,30 +13,36 @@ function DetailQuestion(props) {
   const lenghtData = stateGlobal.data.length;
   const [listItemQuestion, setlistItemQuestion] = useState(false);
   const [listReview, setlistReview] = useState([]);
- 
-  let count = 0;
+
+  // let count = 0;
   function handleResult(i, id) {
     const obj = {
       result_choise: i.result_answer,
       id_question: id,
     };
-    const check = stateGlobal.listResult.filter((item) => item.id_question !== id);
+    const check = stateGlobal.listResult.filter(
+      (item) => item.id_question !== id
+    );
     check
       ? stateGlobal.handleListResult([...check, obj])
       : stateGlobal.handleListResult([...stateGlobal.listResult, obj]);
   }
 
-  function handleFinish() {
-    stateGlobal.listResult &&
-      stateGlobal.listResult.map(
-        (item) =>
-          stateGlobal.data.filter(
-            (i) => i.result_true === item.result_choise
-          ).length !== 0 && (count += 1)
-      );
-    stateGlobal.handleShowResult(count);
-    props.handleOver(true);
-  }
+  // function handleFinish() {
+  //   stateGlobal.listResult &&
+  //     stateGlobal.listResult.map(
+  //       (item) =>
+  //         stateGlobal.data.filter((i) => i.result_true === item.result_choise)
+  //           .length !== 0 && (count += 1)
+  //     );
+
+  //   stateGlobal.handleShowResult(count);
+
+  //   props.handleOver(true);
+
+  //   stateGlobal.setTimePauseV2(stateGlobal.timeCountDown)
+    
+  // }
 
   function plus() {
     setNumberQuestion(numberQuestion + 1);
@@ -57,13 +60,15 @@ function DetailQuestion(props) {
     check
       ? setlistReview([...check, obj])
       : setlistReview([...listReview, obj]);
-  } 
-  
+  }
+
   return (
     <div className="detail_question">
       <div key={stateGlobal.data[numberQuestion].id}>
         <div className="question">
-          <p className="question__title">{stateGlobal.data[numberQuestion].name}</p>
+          <p className="question__title">
+            {stateGlobal.data[numberQuestion].name}
+          </p>
           <p className="question__content">
             {stateGlobal.data[numberQuestion].question}
           </p>
@@ -85,7 +90,9 @@ function DetailQuestion(props) {
 
               <label
                 htmlFor={i.result_answer}
-                onClick={() => handleResult(i, stateGlobal.data[numberQuestion].id)}
+                onClick={() =>
+                  handleResult(i, stateGlobal.data[numberQuestion].id)
+                }
               >
                 {`${i.name_answer}. ${i.result_answer}`}
               </label>
@@ -100,7 +107,9 @@ function DetailQuestion(props) {
           <div className="detail_question__toolbar_item-1">
             <div className="time">
               <i className="far fa-clock">
-                <span><Clock/></span>
+                <span>
+                  <Clock handleFinishV2={props.handleFinishV2} handleFinish={props.handleFinish} handleOver={props.handleOver}/>
+                </span>
               </i>
             </div>
             <div className="check">
@@ -113,7 +122,10 @@ function DetailQuestion(props) {
                   null
                 )}
                 onChange={(e) =>
-                  setCheck(e.target.checked, stateGlobal.data[numberQuestion].id)
+                  setCheck(
+                    e.target.checked,
+                    stateGlobal.data[numberQuestion].id
+                  )
                 }
               />
               <label htmlFor="check"> Xem lại</label>
@@ -133,7 +145,7 @@ function DetailQuestion(props) {
               <Button
                 className="btn-yellow btn-small"
                 content="Nộp bài"
-                onClick={handleFinish}
+                onClick={props.handleFinish}
               />
             ) : (
               <div
@@ -146,32 +158,33 @@ function DetailQuestion(props) {
           </div>
         </div>
         {listItemQuestion === false ? null : (
-        <div className="list__answer">
-          <div className="list__answer-header">
-            <p className="list__answer-title">Bấm vào câu muốn trả lời</p>
-            <Button
-              className="btn-yellow btn-small"
-              content="Nộp bài sớm"
-              onClick={handleFinish}
-            />
+          <div className="list__answer">
+            <div className="list__answer-header">
+              <p className="list__answer-title">Bấm vào câu muốn trả lời</p>
+              <Button
+                className="btn-yellow btn-small"
+                content="Nộp bài sớm"
+                onClick={props.handleFinish}
+              />
+            </div>
+            <div className="list__answer-item">
+              {stateGlobal.data.map((item, index) => (
+                <span
+                  className={filterByResult(
+                    listReview,
+                    stateGlobal.listResult,
+                    item
+                  )}
+                  key={item.id}
+                  onClick={() => setNumberQuestion(index)}
+                >
+                  {index + 1}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="list__answer-item">
-            {stateGlobal.data.map((item, index) => (
-              <span
-                className={filterByResult(listReview, stateGlobal.listResult, item)}
-                key={item.id}
-                onClick={() => setNumberQuestion(index)}
-              >
-                {index + 1}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-     
-     
+        )}
       </div>
-
     </div>
   );
 }

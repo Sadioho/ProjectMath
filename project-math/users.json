@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "confirmPassword": "1234",
+      "password": "1234",
+      "age": 123,
+      "email": "hoxuananh9.3@gmail.com",
+      "lastName": "Hồ",
+      "firstName": "Anh23",
+      "id": 1
+    },
+    {
+      "confirmPassword": "1234",
+      "password": "1234",
+      "age": 12,
+      "email": "hoxuananh9.33@gmail.com",
+      "lastName": "Hồ",
+      "firstName": "Anh",
+      "id": 2
+    },
+    {
+      "confirmPassword": "1234",
+      "password": "1234",
+      "age": 12,
+      "email": "hoxuananh9.33@gmail.com.vn",
+      "lastName": "Hồ",
+      "firstName": "Anh",
+      "id": 3
+    }
+  ]
+}

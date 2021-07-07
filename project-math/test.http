@@ -1,0 +1,15 @@
+
+GET http://localhost:3000/users
+
+###
+
+# @name addNewUser
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name":"Bao" ,
+    "email": "Bao9.3@gmail.com",
+    "password": "123456",
+    "avatar": ""
+}

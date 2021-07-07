@@ -39,7 +39,7 @@ function Tutorial(props) {
                   Chuyển qua <b>câu kế tiếp</b>
                 </p>
               </div>
-            </div>
+            </div> 
             <div className="tutorial__note">
               <h1>Lưu ý:</h1>
               <p>
@@ -59,7 +59,7 @@ function Tutorial(props) {
           />
         </>
       ) : (
-        <DetailQuestion handleOver={props.handleOver} />
+        <DetailQuestion handleFinish={props.handleFinish} handleOver={props.handleOver} handleFinishV2={props.handleFinishV2}  />
       )}
     </>
   );

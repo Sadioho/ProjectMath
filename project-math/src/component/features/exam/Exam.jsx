@@ -1,13 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import "./exam.scss";
-import Question from "../question/Question";
-import Button from "../../common/button/Button";
+import React, { useContext } from "react";
 import { DataApp } from "../../../App";
+import Button from "../../common/button/Button";
+import Question from "../question/Question";
+import "./exam.scss";
 function Exam(props) {
-  const stateGlobal=useContext(DataApp)
-
-console.log("timeend",stateGlobal.timeEnd);
-
+  const stateGlobal = useContext(DataApp);
   return (
     <>
       <div className="exam">
@@ -49,12 +46,20 @@ console.log("timeend",stateGlobal.timeEnd);
               </div>
               <div className="finish__content-box">
                 <p>Thời gian làm bài</p>
-                <h1>{`${stateGlobal.seconds_to(600-stateGlobal.timer)}`}</h1>
+                <h1>{`${stateGlobal.seconds_to(
+                  2700 - stateGlobal.timePause
+                )}`}</h1>
               </div>
             </div>
-            <div className="finish__title red">
-              <h1>Bạn cần cố gắng hơn nữa !</h1>
-            </div>
+            {stateGlobal.showResult * 2.5 <= 5 ? (
+              <div className="finish__title red">
+                <h1>Bạn cần cố gắng hơn nữa !</h1>
+              </div>
+            ) : (
+              <div className="finish__title green">
+                <h1>Chúc mừng bạn đã hoàn thành phần thi! 😂😂😂</h1>
+              </div>
+            )}
           </div>
         )}
       </div>

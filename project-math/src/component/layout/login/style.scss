@@ -60,7 +60,13 @@
   &__sigup{
     font-size: 1.3rem;
    
-    
-
+  }
+  &__errors{
+    font-size: 1.4rem;
+    color: red;
+    text-align: start;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
   }
 }

@@ -32,5 +32,15 @@ export const defaultChecked = (arr1, data, item) => {
 // };
 
 
+export const countResult=(arr1,arr2,count)=>{
+  arr1 &&
+  arr1.map(
+    (item) =>
+      arr2.filter((i) => i.result_true === item.result_choise)
+        .length !== 0 && (count += 1)
+  );
+  return count;
+}
+
 
 
