@@ -53,13 +53,13 @@ function Tutorial(props) {
             </div>
           </div>
           <Button
-            onClick={()=>props.handleExam()}
+            onClick={()=>props.setExam(true)}
             className="btn-yellow btn-medium"
             content="BẮT ĐẦU THI"
           />
         </>
       ) : (
-        <DetailQuestion handleFinish={props.handleFinish} handleOver={props.handleOver} handleFinishV2={props.handleFinishV2}  />
+        <DetailQuestion handleFinish={props.handleFinish} setOverLay={props.setOverLay} handleFinishV2={props.handleFinishV2}  />
       )}
     </>
   );

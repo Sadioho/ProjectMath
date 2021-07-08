@@ -3,29 +3,34 @@
     {
       "confirmPassword": "1234",
       "password": "1234",
-      "age": 123,
       "email": "hoxuananh9.3@gmail.com",
       "lastName": "Hồ",
       "firstName": "Anh23",
       "id": 1
     },
     {
-      "confirmPassword": "1234",
+      "firstName": "Nguyễn",
+      "lastName": "Bảo",
+      "email": "hoasdasd@gmail.com",
       "password": "1234",
-      "age": 12,
-      "email": "hoxuananh9.33@gmail.com",
-      "lastName": "Hồ",
-      "firstName": "Anh",
+      "confirmPassword": "1234",
       "id": 2
     },
     {
-      "confirmPassword": "1234",
-      "password": "1234",
-      "age": 12,
-      "email": "hoxuananh9.33@gmail.com.vn",
-      "lastName": "Hồ",
       "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.3333@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
       "id": 3
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh93.3@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 4
     }
   ]
 }

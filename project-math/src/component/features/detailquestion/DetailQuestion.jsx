@@ -24,25 +24,10 @@ function DetailQuestion(props) {
       (item) => item.id_question !== id
     );
     check
-      ? stateGlobal.handleListResult([...check, obj])
-      : stateGlobal.handleListResult([...stateGlobal.listResult, obj]);
+      ? stateGlobal.setListResult([...check, obj])
+      : stateGlobal.setListResult([...stateGlobal.listResult, obj]);
   }
 
-  // function handleFinish() {
-  //   stateGlobal.listResult &&
-  //     stateGlobal.listResult.map(
-  //       (item) =>
-  //         stateGlobal.data.filter((i) => i.result_true === item.result_choise)
-  //           .length !== 0 && (count += 1)
-  //     );
-
-  //   stateGlobal.handleShowResult(count);
-
-  //   props.handleOver(true);
-
-  //   stateGlobal.setTimePauseV2(stateGlobal.timeCountDown)
-    
-  // }
 
   function plus() {
     setNumberQuestion(numberQuestion + 1);
@@ -108,7 +93,11 @@ function DetailQuestion(props) {
             <div className="time">
               <i className="far fa-clock">
                 <span>
-                  <Clock handleFinishV2={props.handleFinishV2} handleFinish={props.handleFinish} handleOver={props.handleOver}/>
+                  <Clock
+                    handleFinishV2={props.handleFinishV2}
+                    handleFinish={props.handleFinish}
+                    setOverLay={props.setOverLay}
+                  />
                 </span>
               </i>
             </div>

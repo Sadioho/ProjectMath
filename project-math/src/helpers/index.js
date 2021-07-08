@@ -13,7 +13,7 @@ export const defaultChecked = (arr1, data, item) => {
     return (
       arr1.filter(
         (a) =>
-          a.result_choise.result_answer === item.result_true &&
+          item.result_answer === a.result_choise &&
           a.id_question === data.id
       ).length !== 0
     );

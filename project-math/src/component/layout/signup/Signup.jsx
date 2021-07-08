@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.scss";
 import Button from "../../common/button/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { isCompositeComponentWithType } from "react-dom/test-utils";
+import { useHistory } from "react-router-dom";
+import { DataApp } from "../../../App";
 
 const schema = yup.object().shape({
   firstName: yup.string().required("First Name should be required please"),
   lastName: yup.string().required(),
   email: yup.string().email().required(),
-  age: yup.number().positive().integer().required(),
   password: yup.string().min(4).max(15).required(),
   confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
 });
 
 export default function Login() {
+  const stateGlobal = useContext(DataApp);
   const [users, setUsers] = useState([]);
+  const [errorsCheckAccount, seterrorsCheckAccount] = useState(true);
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  let history = useHistory();
   const {
     register,
     handleSubmit,
@@ -36,13 +40,14 @@ export default function Login() {
   }, []);
 
   async function submitForm(data) {
-
     console.log(data);
     let countAccount = users.filter((item) => {
       return item.email === data.email;
     });
 
     if (countAccount.length > 0) {
+      seterrorsCheckAccount(false);
+      setSignupSuccess(false);
       console.log("trùng");
     } else {
       let apiUser = await fetch("http://localhost:3000/users", {
@@ -55,7 +60,13 @@ export default function Login() {
       });
       apiUser = await apiUser.json();
       fetchUsers();
-      console.log("Da them");
+      seterrorsCheckAccount(true);
+      setSignupSuccess(true);
+      stateGlobal.setLoginSuccess(true);
+      stateGlobal.setUserName(`${data.firstName} ${data.lastName}`);
+      localStorage.setItem("my-info", JSON.stringify(apiUser));
+      history.push("/");
+      console.log("Dang ky thanh cong");
     }
   }
 
@@ -80,8 +91,7 @@ export default function Login() {
             placeholder="First Name..."
           />
           <p className="login__errors">
-            {" "}
-            {errors.firstName && "Không được để trống"}{" "}
+            {errors.firstName && "Không được để trống"}
           </p>
           <input
             type="text"
@@ -90,8 +100,7 @@ export default function Login() {
             {...register("lastName")}
           />
           <p className="login__errors">
-            {" "}
-            {errors.lastName && "Không được để trống "}{" "}
+            {errors.lastName && "Không được để trống "}
           </p>
           <input
             type="text"
@@ -100,16 +109,9 @@ export default function Login() {
             {...register("email")}
           />
           <p className="login__errors"> {errors.email && "Nhập đúng email"} </p>
-          <input
-            type="text"
-            name="age"
-            placeholder="Age..."
-            {...register("age")}
-          />
-          <p className="login__errors">
-            {" "}
-            {errors.age && "Không được để trống"}{" "}
-          </p>
+          {!errorsCheckAccount && (
+            <p className="login__errors"> Email đã tồn tại </p>
+          )}
           <input
             type="password"
             name="password"
@@ -117,9 +119,7 @@ export default function Login() {
             {...register("password")}
           />
           <p className="login__errors">
-            {" "}
-            {errors.password &&
-              "Không được để trống, Mật khẩu lớn hơn 4 ký tự"}{" "}
+            {errors.password && "Không được để trống, Mật khẩu lớn hơn 4 ký tự"}
           </p>
           <input
             type="password"
@@ -128,8 +128,10 @@ export default function Login() {
             {...register("confirmPassword")}
           />
           <p className="login__errors">
-            {" "}
-            {errors.confirmPassword && "Mật khẩu không trùng"}{" "}
+            {errors.confirmPassword && "Mật khẩu không trùng"}
+          </p>
+          <p className="success">
+            {signupSuccess && "Bạn đã đăng ký thành công 😍😉😂😍 !! "}
           </p>
           <Button
             content="Đăng Ký "

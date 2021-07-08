@@ -1,11 +1,11 @@
-import "./app.scss";
-import Header from "./component/layout/header/Header";
-import Footer from "./component/layout/footer/Footer";
-import Main from "./component/layout/main/Main";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
+import "./app.scss";
+import Footer from "./component/layout/footer/Footer";
+import Header from "./component/layout/header/Header";
 import Login from "./component/layout/login/Login";
-import Signup from "./component/layout/signup/Signup"
+import Main from "./component/layout/main/Main";
+import Signup from "./component/layout/signup/Signup";
 
 export const DataApp = React.createContext(null);
 
@@ -16,27 +16,9 @@ function App() {
   const [finish, setFinish] = useState(false);
   const [timeCountDown, setTimeCountDown] = useState(0);
   const [timePause, setTimePause] = useState(0);
-
-
-  function setTimePauseV2(data) {
-    setTimePause(data);
-  }
-
-  function setTimeCountDownV2(data) {
-    setTimeCountDown(data);
-  }
-
-  function setFinishV2(data) {
-    setFinish(data);
-  }
-
-  function handleShowResult(data) {
-    setShowResult(data);
-  }
-
-  function handleListResult(data) {
-    setListResult(data);
-  }
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [userName, setUserName] = useState(null);
 
   useEffect(() => {
     async function fetchListQuestion() {
@@ -44,11 +26,19 @@ function App() {
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       setData(responseJSON);
+      setIsLoading(true);
     }
     fetchListQuestion();
+    if (localStorage.getItem("my-info")) {
+      let fullName =
+        JSON.parse(localStorage.getItem("my-info")).firstName +
+        " " +
+        JSON.parse(localStorage.getItem("my-info")).lastName;
+      setUserName(fullName);
+      setLoginSuccess(true);
+    }
     return () => {};
   }, []);
-
 
   const seconds_to = (sec) => {
     var hours = Math.floor(sec / 3600);
@@ -58,7 +48,7 @@ function App() {
     sec < 1 ? (sec = "00") : void 0;
     min.toString().length === 1 ? (min = "0" + min) : void 0;
     sec.toString().length === 1 ? (sec = "0" + sec) : void 0;
-    return  min + ":" + sec;
+    return min + ":" + sec;
   };
 
   return (
@@ -67,30 +57,51 @@ function App() {
         value={{
           data: data,
           listResult: listResult,
-          handleListResult: handleListResult,
+          setListResult: setListResult,
           showResult: showResult,
-          handleShowResult: handleShowResult,
+          setShowResult: setShowResult,
           timeCountDown: timeCountDown,
-          setTimeCountDownV2: setTimeCountDownV2,
+          setTimeCountDown: setTimeCountDown,
           seconds_to: seconds_to,
-          setFinishV2: setFinishV2,
+          setFinish: setFinish,
           finish: finish,
-          setTimePauseV2: setTimePauseV2,
+          setTimePause: setTimePause,
           timePause: timePause,
+          //login
+          userName: userName,
+          setUserName: setUserName,
+          loginSuccess: loginSuccess,
+          setLoginSuccess: setLoginSuccess,
+          isLoading: isLoading,
         }}
       >
         <Header />
-
         <Route path="/" exact>
           <Main />
         </Route>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-        <Route path="/signup" exact>
-          <Signup />
-        </Route>
 
+        <Route
+          path="/login"
+          exact
+          render={() => {
+            return !localStorage.getItem("my-info") ? (
+              <Login />
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
+        <Route
+          path="/signup"
+          exact
+          render={() => {
+            return !localStorage.getItem("my-info") ? (
+              <Signup />
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
         <Footer />
       </DataApp.Provider>
     </Router>

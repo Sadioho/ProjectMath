@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { DataApp } from "../../../App";
 import { countResult } from "../../../helpers";
 import Button from "../../common/button/Button";
@@ -6,47 +7,45 @@ import Exam from "../../features/exam/Exam";
 import TopExam from "../../features/top_exam/TopExam";
 import Tutorial from "../../features/tutorial/Tutorial";
 import "./main.scss";
+import { Spinner } from "../../spinner/Spinner";
 
 function Main(props) {
   const stateGlobal = useContext(DataApp);
-
+  let history = useHistory();
   const [overLay, setOverLay] = useState(false);
   const [tutorial, setTutorial] = useState(false);
   const [exam, setExam] = useState(false);
 
-  function handleExam() {
-    setExam(true);
-  }
   function handleClick() {
-    setTutorial(true);
-  }
-
-  function handleOver(data) {
-    setOverLay(data);
+    if (!stateGlobal.loginSuccess) {
+      history.push("/login");
+    } else {
+      setTutorial(true);
+    }
   }
 
   function handleFinishV2() {
-    stateGlobal.setFinishV2(true);
-    handleOver(false);
+    stateGlobal.setFinish(true);
+    setOverLay(false);
     setTutorial(false);
     setExam(false);
     let count = countResult(stateGlobal.listResult, stateGlobal.data, 0);
-    stateGlobal.handleShowResult(count);
+    stateGlobal.setShowResult(count);
   }
 
   // let count = 0;
   function handleFinish() {
     let count = countResult(stateGlobal.listResult, stateGlobal.data, 0);
-    stateGlobal.handleShowResult(count);
-    stateGlobal.setTimePauseV2(stateGlobal.timeCountDown);
-    handleOver(true);
+    stateGlobal.setShowResult(count);
+    stateGlobal.setTimePause(stateGlobal.timeCountDown);
+    setOverLay(true);
   }
 
   return (
     <div className="main">
       <div className="container">
         {overLay && (
-          <div className="container_overlay" onClick={() => handleOver(false)}>
+          <div className="container_overlay" onClick={() => setOverLay(false)}>
             <div className="overlay">
               <div className="overlay__content">
                 <h3 className="overlay__content-title">
@@ -69,7 +68,7 @@ function Main(props) {
                   className="btn-yellow btn-overlay "
                 />
                 <Button
-                  onClick={() => handleOver(false)}
+                  onClick={() => setOverLay(false)}
                   content="Làm tiếp 🎮"
                   className="btn-blue btn-overlay"
                 />
@@ -80,13 +79,15 @@ function Main(props) {
         <div className="row align-items-start">
           <div className="col-9 main__content">
             <div className="main__content_item">
-              {tutorial === false ? (
+              {!stateGlobal.isLoading ? (
+                <Spinner />
+              ) : tutorial === false ? (
                 <Exam finish={stateGlobal.finish} handleClick={handleClick} />
               ) : (
                 <Tutorial
-                  handleExam={handleExam}
+                  setExam={setExam}
                   exam={exam}
-                  handleOver={handleOver}
+                  setOverLay={setOverLay}
                   handleFinishV2={handleFinishV2}
                   handleFinish={handleFinish}
                 />

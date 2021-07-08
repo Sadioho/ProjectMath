@@ -12,11 +12,11 @@ const Clock = (props) => {
       if (timer > 0) setTimeDown(timer - 1);
     }, 1000);
 
-    stateGlobal.setTimeCountDownV2(timeDown);
+    stateGlobal.setTimeCountDown(timeDown);
 
     if (timeDown === 0) {
       props.handleFinishV2();
-      stateGlobal.setTimePauseV2(0)
+      stateGlobal.setTimePause(0)
     }
 
     return () => {
