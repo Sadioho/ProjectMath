@@ -8,6 +8,7 @@ import TopExam from "../../features/top_exam/TopExam";
 import Tutorial from "../../features/tutorial/Tutorial";
 import "./main.scss";
 import { Spinner } from "../../spinner/Spinner";
+import { ViewResult } from "../../features/ViewResult/ViewResult";
 
 function Main(props) {
   const stateGlobal = useContext(DataApp);
@@ -17,7 +18,7 @@ function Main(props) {
   const [exam, setExam] = useState(false);
 
   function handleClick() {
-    if (!stateGlobal.loginSuccess) {
+    if (!localStorage.getItem("my-info")) {
       history.push("/login");
     } else {
       setTutorial(true);
@@ -31,6 +32,7 @@ function Main(props) {
     setExam(false);
     let count = countResult(stateGlobal.listResult, stateGlobal.data, 0);
     stateGlobal.setShowResult(count);
+    localStorage.removeItem("loadingExam")
   }
 
   // let count = 0;
@@ -57,7 +59,7 @@ function Main(props) {
                 </h3>
                 <p>
                   Thời gian còn ⌚{" "}
-                  {stateGlobal.seconds_to(stateGlobal.timePause)}
+                  {stateGlobal.format_second_to_minutes(stateGlobal.timePause)}
                 </p>
                 <p>Bạn đồng ý nộp bài ✅</p>
               </div>
@@ -77,12 +79,12 @@ function Main(props) {
           </div>
         )}
         <div className="row align-items-start">
-          <div className="col-9 main__content">
+          <div className="col-8 main__content">
             <div className="main__content_item">
               {!stateGlobal.isLoading ? (
                 <Spinner />
               ) : tutorial === false ? (
-                <Exam finish={stateGlobal.finish} handleClick={handleClick} />
+                <Exam  handleClick={handleClick} />
               ) : (
                 <Tutorial
                   setExam={setExam}
@@ -94,10 +96,10 @@ function Main(props) {
               )}
             </div>
           </div>
-          <div className="col-3 main__ratings">
-            {!tutorial && !stateGlobal.finish ? (
+          <div className="col-4 main__ratings">
+            {stateGlobal.finish && <ViewResult />}
+            {!tutorial && !stateGlobal.finish && !localStorage.getItem("loadingExam") ? (
               <>
-                <div className="main__ratings_header"></div>
                 <p className="main__ratings_text">
                   Bạn có muốn chinh phục đề thi này ?
                 </p>

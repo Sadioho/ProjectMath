@@ -17,15 +17,15 @@ function Exam(props) {
             <span> 45 phút</span>
           </i>
         </div>
-        {props.finish === false ? (
+        {stateGlobal.finish === false ? (
           <>
             <div className="exam__question">
-              <Question data={props.data} />
+              <Question  />
             </div>
             <Button
               onClick={props.handleClick}
               className="btn-yellow btn-medium"
-              content="BẮT ĐẦU THI"
+              content="BẮT ĐẦU THI EXAM "
             />
           </>
         ) : (
@@ -46,7 +46,7 @@ function Exam(props) {
               </div>
               <div className="finish__content-box">
                 <p>Thời gian làm bài</p>
-                <h1>{`${stateGlobal.seconds_to(
+                <h1>{`${stateGlobal.format_second_to_minutes(
                   2700 - stateGlobal.timePause
                 )}`}</h1>
               </div>

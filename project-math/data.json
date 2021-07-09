@@ -1,101 +1,198 @@
 {
-    "list_question": [
+  "list_question": [
+    {
+      "id": "30",
+      "question": "5 + 9 = ?",
+      "results": [
         {
-            "id": "30",
-            "question": "5 + 9 = ?",
-            "results": [
-                {
-                    "name_answer": "A",
-                    "result_answer": "3"
-                },
-                {
-                    "name_answer": "B",
-                    "result_answer": "14"
-                },
-                {
-                    "name_answer": "C",
-                    "result_answer": "13"
-                },
-                {
-                    "name_answer": "D",
-                    "result_answer": "23"
-                }
-            ],
-            "result_true":  "14",
-            "name": "Câu 1"
+          "name_answer": "A",
+          "result_answer": "3"
         },
         {
-            "id": "33",
-            "question": "2 + 9 = ?",
-            "results": [
-                {
-                    "name_answer": "A",
-                    "result_answer": "3"
-                },
-                {
-                    "name_answer": "B",
-                    "result_answer": "11"
-                },
-                {
-                    "name_answer": "C",
-                    "result_answer": "50"
-                },
-                {
-                    "name_answer": "D",
-                    "result_answer": "100"
-                }
-            ],
-            "result_true": "11",
-            "name": "Câu 2"
+          "name_answer": "B",
+          "result_answer": "14"
         },
         {
-            "id": "34",
-            "question": "20+100 = ?",
-            "results": [
-                {
-                    "name_answer": "A",
-                    "result_answer": "300"
-                },
-                {
-                    "name_answer": "B",
-                    "result_answer": "120"
-                },
-                {
-                    "name_answer": "C",
-                    "result_answer": "133"
-                },
-                {
-                    "name_answer": "D",
-                    "result_answer": "141"
-                }
-            ],
-            "result_true": "120",
-            "name": "Câu 3"
+          "name_answer": "C",
+          "result_answer": "13"
         },
         {
-            "id": "35",
-            "question": "50 + 9 = ?",
-            "results": [
-                {
-                    "name_answer": "A",
-                    "result_answer": "99"
-                },
-                {
-                    "name_answer": "B",
-                    "result_answer": "59"
-                },
-                {
-                    "name_answer": "C",
-                    "result_answer": "22"
-                },
-                {
-                    "name_answer": "D",
-                    "result_answer": "93"
-                }
-            ],
-            "result_true": "59",
-            "name": "Câu 4"
+          "name_answer": "D",
+          "result_answer": "23"
         }
-    ]
-    
+      ],
+      "result_true": "14",
+      "name": "Câu 1"
+    },
+    {
+      "id": "33",
+      "question": "2 + 9 = ?",
+      "results": [
+        {
+          "name_answer": "A",
+          "result_answer": "3"
+        },
+        {
+          "name_answer": "B",
+          "result_answer": "11"
+        },
+        {
+          "name_answer": "C",
+          "result_answer": "50"
+        },
+        {
+          "name_answer": "D",
+          "result_answer": "100"
+        }
+      ],
+      "result_true": "11",
+      "name": "Câu 2"
+    },
+    {
+      "id": "34",
+      "question": "20+100 = ?",
+      "results": [
+        {
+          "name_answer": "A",
+          "result_answer": "300"
+        },
+        {
+          "name_answer": "B",
+          "result_answer": "120"
+        },
+        {
+          "name_answer": "C",
+          "result_answer": "133"
+        },
+        {
+          "name_answer": "D",
+          "result_answer": "141"
+        }
+      ],
+      "result_true": "120",
+      "name": "Câu 3"
+    },
+    {
+      "id": "35",
+      "question": "50 + 9 = ?",
+      "results": [
+        {
+          "name_answer": "A",
+          "result_answer": "99"
+        },
+        {
+          "name_answer": "B",
+          "result_answer": "59"
+        },
+        {
+          "name_answer": "C",
+          "result_answer": "22"
+        },
+        {
+          "name_answer": "D",
+          "result_answer": "93"
+        }
+      ],
+      "result_true": "59",
+      "name": "Câu 4"
+    }
+  ],
+  "users": [
+    {
+      "confirmPassword": "1234",
+      "password": "1234",
+      "email": "hoxuananh9.3@gmail.com",
+      "lastName": "Hồ",
+      "firstName": "Anh23",
+      "id": 1
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.32@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 2
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.432@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 3
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.4732@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 4
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "kingsleyho2611@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 5
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh93.3@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 6
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh49.3@gmail.com",
+      "password": "12345",
+      "confirmPassword": "12345",
+      "id": 7
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.3222@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 8
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "17T1021002@husc.edu.vn",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 9
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.33@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 10
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.3333@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 11
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.333@gmail.com",
+      "password": "2345",
+      "confirmPassword": "2345",
+      "id": 12
+    }
+  ]
 }

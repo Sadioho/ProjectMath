@@ -13,8 +13,7 @@ export const defaultChecked = (arr1, data, item) => {
     return (
       arr1.filter(
         (a) =>
-          item.result_answer === a.result_choise &&
-          a.id_question === data.id
+          item.result_answer === a.result_choise && a.id_question === data.id
       ).length !== 0
     );
   }
@@ -31,16 +30,20 @@ export const defaultChecked = (arr1, data, item) => {
 //   );
 // };
 
-
-export const countResult=(arr1,arr2,count)=>{
+export const countResult = (arr1, arr2, count) => {
   arr1 &&
-  arr1.map(
-    (item) =>
-      arr2.filter((i) => i.result_true === item.result_choise)
-        .length !== 0 && (count += 1)
-  );
+    arr1.map(
+      (item) =>
+        arr2.filter((i) => i.result_true === item.result_choise).length !== 0 &&
+        (count += 1)
+    );
   return count;
-}
+};
 
+export const _isEmpty = (obj) => {
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) return false;
+  }
 
-
+  return true;
+};

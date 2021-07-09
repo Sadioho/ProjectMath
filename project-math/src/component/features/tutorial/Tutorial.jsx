@@ -7,6 +7,9 @@ import Button from "../../common/button/Button";
 import DetailQuestion from "../detailquestion/DetailQuestion";
 import "./tutorial.scss";
 function Tutorial(props) {
+  const  loadingExam=()=>{
+    props.setExam(true);
+  }
   return (
     <>
       {props.exam === false ? (
@@ -53,9 +56,9 @@ function Tutorial(props) {
             </div>
           </div>
           <Button
-            onClick={()=>props.setExam(true)}
+            onClick={loadingExam}
             className="btn-yellow btn-medium"
-            content="BẮT ĐẦU THI"
+            content="BẮT ĐẦU THI TUTORIAL"
           />
         </>
       ) : (

@@ -1,6 +1,7 @@
 import React from "react";
 import LogoFooter from "../../../image/logo-footer.png";
 import "./footer.scss";
+import { context } from "../../../hooks/context";
 
 function Footer(props) {
   return (
@@ -106,6 +107,7 @@ function Footer(props) {
           <p> Copyright © 2021 by Danny Hồ </p>
         </div>
       </div>
+      <context/>
     </footer>
   );
 }

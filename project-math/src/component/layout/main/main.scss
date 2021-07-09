@@ -1,13 +1,13 @@
 .main {
   padding-bottom: 5rem 0;
-  height: max-content;
-  max-height: 70vh;
+  // height: max-content;
+  // max-height: 70vh;
   // position: relative;
   &__content {
     padding-right: 3rem;
     &_item {
       border-radius: 2rem;
-      border: 1px solid grey;
+      border: 1px solid rgb(209, 208, 208);
       padding: 2rem;
     }
   }
@@ -15,10 +15,10 @@
     height: 40rem;
     border-radius: 0.5rem;
     &_header {
-      color: white;
+      // color: white;
       padding: 2rem;
       text-align: center;
-      background-color: #c7c7c7;
+      background-color: #f6f6f6;
       border-radius: 0.5rem;
     }
     &_text {

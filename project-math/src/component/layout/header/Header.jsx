@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { DataApp } from "../../../App";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
+
+import { _isEmpty } from "../../../helpers";
 import Logo from "../../../image/trac-nghiem-online.png";
 import "./header.scss";
 
 function Header(props) {
-  const stateGlobal = useContext(DataApp);
-  function signout(){
-    stateGlobal.setLoginSuccess(false);
+  const history = useHistory();
+  const jwt = JSON.parse(localStorage.getItem("my-info"));
+  function signout() {
+    props.setloginSuccess(false)
     localStorage.removeItem("my-info");
+    history.push("/login");
   }
   return (
     <header className="header">
@@ -45,16 +48,19 @@ function Header(props) {
               </nav>
             </div>
             <div className="header__login">
-              {stateGlobal.loginSuccess ? (
+              { props.loginSuccess ? (
                 <div className="login-success">
-                  <a href="/#" className="username">
-                    <span> {stateGlobal.userName}</span>
+                  <div className="username  button-sigin">
+                    <span>
+                      {jwt.firstName} {jwt.lastName}
+                    </span>
                     <i className="header__login_icon  fas fa-user-tie"></i>
-                  </a>
-                  <a href="/#" onClick={signout} className="signup">
+                  </div>
+
+                  <div onClick={signout} className="signup button-sigin">
                     <span> Đăng xuất</span>
                     <i className="header__login_icon fas fa-sign-out-alt"></i>
-                  </a>
+                  </div>
                 </div>
               ) : (
                 <Link to="/login">

@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import "./style.scss";
-import Button from "../../common/button/Button";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
-import { DataApp } from "../../../App";
+import * as yup from "yup";
+import Button from "../../common/button/Button";
+import { Spinner2 } from "../../spinner/Spinner2";
+import "./style.scss";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -13,10 +13,9 @@ const schema = yup.object().shape({
   // confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
 });
 
-export default function Login() {
+export default function Login(props) {
   const [users, setUsers] = useState([]);
   const [loginError, setLoginError] = useState(false);
-  const stateGlobal = useContext(DataApp);
 
   let history = useHistory();
 
@@ -35,7 +34,7 @@ export default function Login() {
     setUsers(responseJSON);
   }
 
-  function setLoginErrorV2() { 
+  function setLoginErrorV2() {
     setLoginError(true);
   }
 
@@ -49,15 +48,9 @@ export default function Login() {
       (item) => item.email === data.email && item.password === data.password
     );
     if (checkLogin.length === 1) {
-      stateGlobal.setLoginSuccess(true);
       localStorage.setItem("my-info", JSON.stringify(checkLogin[0]));
-      let fullName =
-        JSON.parse(localStorage.getItem("my-info")).firstName +
-        " " +
-        JSON.parse(localStorage.getItem("my-info")).lastName;
-      stateGlobal.setUserName(fullName);
+      props.setloginSuccess(true);
       history.push("/");
-      console.log(fullName);
     } else {
       setLoginErrorV2();
     }
@@ -107,6 +100,7 @@ export default function Login() {
             content="Đăng nhập "
             className="btn-red btn-max btn-font-size"
           />
+          {loginError && <Spinner2></Spinner2>}
         </form>
 
         <div className="login__sigup">

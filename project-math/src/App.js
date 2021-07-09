@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route ,Switch} from "react-router-dom";
 import "./app.scss";
 import Footer from "./component/layout/footer/Footer";
 import Header from "./component/layout/header/Header";
 import Login from "./component/layout/login/Login";
 import Main from "./component/layout/main/Main";
 import Signup from "./component/layout/signup/Signup";
+import { _isEmpty } from "./helpers";
+// import { CurrencyProvider,useCurrency } from "./hooks/demoContext";
 
 export const DataApp = React.createContext(null);
 
@@ -17,30 +19,30 @@ function App() {
   const [timeCountDown, setTimeCountDown] = useState(0);
   const [timePause, setTimePause] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [loginSuccess, setLoginSuccess] = useState(false);
-  const [userName, setUserName] = useState(null);
+
+  const [loginSuccess, setloginSuccess] = useState(false)
+
+
+
 
   useEffect(() => {
     async function fetchListQuestion() {
-      const requestUrl = "http://localhost:3002/list_question";
+      const requestUrl = "http://localhost:3000/list_question";
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       setData(responseJSON);
       setIsLoading(true);
     }
+    
     fetchListQuestion();
-    if (localStorage.getItem("my-info")) {
-      let fullName =
-        JSON.parse(localStorage.getItem("my-info")).firstName +
-        " " +
-        JSON.parse(localStorage.getItem("my-info")).lastName;
-      setUserName(fullName);
-      setLoginSuccess(true);
+
+    if(!_isEmpty(localStorage.getItem('my-info'))){
+      setloginSuccess(true)
     }
     return () => {};
   }, []);
 
-  const seconds_to = (sec) => {
+  const format_second_to_minutes = (sec) => {
     var hours = Math.floor(sec / 3600);
     hours >= 1 ? (sec = sec - hours * 3600) : (hours = "00");
     var min = Math.floor(sec / 60);
@@ -53,57 +55,50 @@ function App() {
 
   return (
     <Router>
-      <DataApp.Provider
-        value={{
-          data: data,
-          listResult: listResult,
-          setListResult: setListResult,
-          showResult: showResult,
-          setShowResult: setShowResult,
-          timeCountDown: timeCountDown,
-          setTimeCountDown: setTimeCountDown,
-          seconds_to: seconds_to,
-          setFinish: setFinish,
-          finish: finish,
-          setTimePause: setTimePause,
-          timePause: timePause,
-          //login
-          userName: userName,
-          setUserName: setUserName,
-          loginSuccess: loginSuccess,
-          setLoginSuccess: setLoginSuccess,
-          isLoading: isLoading,
-        }}
-      >
-        <Header />
-        <Route path="/" exact>
+      <Header loginSuccess={loginSuccess} setloginSuccess={setloginSuccess}/>
+      <Route path="/" exact>
+        <DataApp.Provider
+          value={{
+            data: data,
+            listResult: listResult,
+            setListResult: setListResult,
+            showResult: showResult,
+            setShowResult: setShowResult,
+            timeCountDown: timeCountDown,
+            setTimeCountDown: setTimeCountDown,
+            format_second_to_minutes: format_second_to_minutes,
+            finish: finish,
+            setFinish: setFinish,
+            setTimePause: setTimePause,
+            timePause: timePause,
+            isLoading: isLoading,
+            
+          }}
+        >
           <Main />
-        </Route>
-
-        <Route
-          path="/login"
-          exact
-          render={() => {
-            return !localStorage.getItem("my-info") ? (
-              <Login />
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-        <Route
-          path="/signup"
-          exact
-          render={() => {
-            return !localStorage.getItem("my-info") ? (
-              <Signup />
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-        <Footer />
-      </DataApp.Provider>
+        </DataApp.Provider>
+      </Route>
+      <Route
+        path="/login"
+        render={() => {
+          return _isEmpty(localStorage.getItem("my-info")) ? (
+            <Login setloginSuccess={setloginSuccess}/>
+          ) : (
+            <Redirect to="/"  />
+          );
+        }}
+      ></Route>
+      <Route
+        path="/signup"
+        render={() => {
+          return _isEmpty(localStorage.getItem("my-info")) ? (
+            <Signup setloginSuccess={setloginSuccess}/>
+          ) : (
+            <Redirect to="/" />
+          );
+        }}
+      ></Route>
+      <Footer />
     </Router>
   );
 }

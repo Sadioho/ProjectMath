@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
-function Input({nmae, id, onclick,...rest}) {
-    return (
-        <input {...rest}  />
-    )
+function InputWithLabel({ id, spanText, propsLabel, propsInput }) {
+  return (
+    <label htmlFor={id} {...propsLabel}>
+      <input {...propsInput} />
+      {spanText && <span>{spanText}</span>}
+    </label>
+  );
 }
 
-export default Input
+export default InputWithLabel;

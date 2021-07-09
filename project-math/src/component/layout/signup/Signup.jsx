@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import "./style.scss";
-import Button from "../../common/button/Button";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { DataApp } from "../../../App";
+import * as yup from "yup";
+import { useFetch } from "../../../hooks/useFetch";
+import Button from "../../common/button/Button";
+import { Spinner2 } from "../../spinner/Spinner2";
+import "./style.scss";
 
 const schema = yup.object().shape({
   firstName: yup.string().required("First Name should be required please"),
@@ -15,9 +16,7 @@ const schema = yup.object().shape({
   confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
 });
 
-export default function Login() {
-  const stateGlobal = useContext(DataApp);
-  const [users, setUsers] = useState([]);
+export default function Login(props) {
   const [errorsCheckAccount, seterrorsCheckAccount] = useState(true);
   const [signupSuccess, setSignupSuccess] = useState(false);
   let history = useHistory();
@@ -28,26 +27,17 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  async function fetchUsers() {
-    const requestUrl = "http://localhost:3000/users";
-    const response = await fetch(requestUrl);
-    const responseJSON = await response.json();
-    setUsers(responseJSON);
-  }
-  useEffect(() => {
-    fetchUsers();
-    return () => {};
-  }, []);
+
+  const { response } = useFetch("users");
 
   async function submitForm(data) {
     console.log(data);
-    let countAccount = users.filter((item) => {
+    let countAccount = response.filter((item) => {
       return item.email === data.email;
     });
 
     if (countAccount.length > 0) {
       seterrorsCheckAccount(false);
-      setSignupSuccess(false);
       console.log("trùng");
     } else {
       let apiUser = await fetch("http://localhost:3000/users", {
@@ -59,12 +49,10 @@ export default function Login() {
         },
       });
       apiUser = await apiUser.json();
-      fetchUsers();
       seterrorsCheckAccount(true);
       setSignupSuccess(true);
-      stateGlobal.setLoginSuccess(true);
-      stateGlobal.setUserName(`${data.firstName} ${data.lastName}`);
       localStorage.setItem("my-info", JSON.stringify(apiUser));
+      props.setloginSuccess(true);
       history.push("/");
       console.log("Dang ky thanh cong");
     }
@@ -137,6 +125,8 @@ export default function Login() {
             content="Đăng Ký "
             className="btn-red btn-max btn-font-size"
           />
+          {!errorsCheckAccount &&  <Spinner2></Spinner2>}
+              
         </form>
 
         <div className="login__sigup">

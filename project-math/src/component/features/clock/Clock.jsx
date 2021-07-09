@@ -24,7 +24,7 @@ const Clock = (props) => {
     };
   }, [timeDown]);
 
-  return <>{stateGlobal.seconds_to(timeDown)}</>;
+  return <>{stateGlobal.format_second_to_minutes(timeDown)}</>;
 };
 
 export default Clock;
