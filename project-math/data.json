@@ -99,100 +99,81 @@
   ],
   "users": [
     {
-      "confirmPassword": "1234",
-      "password": "1234",
-      "email": "hoxuananh9.3@gmail.com",
+      "firstName": "Anh",
       "lastName": "Hồ",
-      "firstName": "Anh23",
+      "email": "hoxuananh9.3@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "time": 5,
+      "point": 7.5,
       "id": 1
     },
     {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "hoxuananh9.32@gmail.com",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": 2
-    },
-    {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "hoxuananh9.432@gmail.com",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": 3
-    },
-    {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "hoxuananh9.4732@gmail.com",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": 4
-    },
-    {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "kingsleyho2611@gmail.com",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": 5
-    },
-    {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "hoxuananh93.3@gmail.com",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": 6
-    },
-    {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "hoxuananh49.3@gmail.com",
-      "password": "12345",
-      "confirmPassword": "12345",
-      "id": 7
-    },
-    {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "hoxuananh9.3222@gmail.com",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": 8
-    },
-    {
-      "firstName": "Anh",
-      "lastName": "Hồ",
-      "email": "17T1021002@husc.edu.vn",
-      "password": "1234",
-      "confirmPassword": "1234",
-      "id": 9
-    },
-    {
-      "firstName": "Anh",
+      "firstName": "Anh2",
       "lastName": "Hồ",
       "email": "hoxuananh9.33@gmail.com",
       "password": "1234",
       "confirmPassword": "1234",
-      "id": 10
-    },
-    {
-      "firstName": "Anh",
+      "time": 4,
+      "point": 10,
+      "id": 2
+    },{
+      "firstName": "Anh2",
       "lastName": "Hồ",
-      "email": "hoxuananh9.3333@gmail.com",
+      "email": "hoxuananh9.33@gmail.com",
       "password": "1234",
       "confirmPassword": "1234",
-      "id": 11
+      "time": 4,
+      "point": 10,
+      "id": 2
+    },{
+      "firstName": "Anh2",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.33@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "time": 4,
+      "point": 10,
+      "id": 2
+    },{
+      "firstName": "Anh2",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.33@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "time": 4,
+      "point": 10,
+      "id": 2
     },
     {
-      "firstName": "Anh",
+      "firstName": "Anh2",
       "lastName": "Hồ",
-      "email": "hoxuananh9.333@gmail.com",
-      "password": "2345",
-      "confirmPassword": "2345",
-      "id": 12
+      "email": "hoxuananh9.33@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "time": 4,
+      "point": 10,
+      "id": 2
+    },
+    {
+      "firstName": "Anh2",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.33@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "time": 4,
+      "point": 10,
+      "id": 2
+    },
+    {
+      "firstName": "Anh2",
+      "lastName": "Hồ",
+      "email": "hoxuananh9.33@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "time": 4,
+      "point": 10,
+      "id": 2
     }
   ]
 }

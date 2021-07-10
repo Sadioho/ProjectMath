@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { DataApp } from "../../../App";
-import { countResult } from "../../../helpers";
+import { countResult, format_second_to_minutes } from "../../../helpers";
 import Button from "../../common/button/Button";
 import Exam from "../../features/exam/Exam";
 import TopExam from "../../features/top_exam/TopExam";
@@ -25,14 +25,59 @@ function Main(props) {
     }
   }
 
-  function handleFinishV2() {
+  async function handleFinishV2() {
+    let ramdomID = Math.random().toString(36).substring(7);
     stateGlobal.setFinish(true);
     setOverLay(false);
     setTutorial(false);
     setExam(false);
+    //reload top exam
+    let time = 2700 - stateGlobal.timePause;
+    let point = stateGlobal.showResult * 2.5;
     let count = countResult(stateGlobal.listResult, stateGlobal.data, 0);
+    let id = JSON.parse(localStorage.getItem("my-info")).id;
+    let dataPatch = {
+      time: time,
+      point: point,
+    };
+    
+    let checkPoint = stateGlobal.listUser.find((item) => item.id === id);
+
+    stateGlobal.setreload(ramdomID);
     stateGlobal.setShowResult(count);
-    localStorage.removeItem("loadingExam")
+    if (checkPoint.point == null && checkPoint.time == null) {
+      await fetch(`http://localhost:3000/users/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(dataPatch),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+    } else {
+      if (checkPoint.point < point) {
+        await fetch(`http://localhost:3000/users/${id}`, {
+          method: "PATCH",
+          body: JSON.stringify(dataPatch),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+      }
+      if (checkPoint.point === point) {
+        if (checkPoint.time > time) {
+          await fetch(`http://localhost:3000/users/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify(dataPatch),
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          });
+        }
+      }
+    }
   }
 
   // let count = 0;
@@ -59,7 +104,7 @@ function Main(props) {
                 </h3>
                 <p>
                   Thời gian còn ⌚{" "}
-                  {stateGlobal.format_second_to_minutes(stateGlobal.timePause)}
+                  {format_second_to_minutes(stateGlobal.timePause)}
                 </p>
                 <p>Bạn đồng ý nộp bài ✅</p>
               </div>
@@ -84,7 +129,7 @@ function Main(props) {
               {!stateGlobal.isLoading ? (
                 <Spinner />
               ) : tutorial === false ? (
-                <Exam  handleClick={handleClick} />
+                <Exam handleClick={handleClick} />
               ) : (
                 <Tutorial
                   setExam={setExam}
@@ -98,8 +143,9 @@ function Main(props) {
           </div>
           <div className="col-4 main__ratings">
             {stateGlobal.finish && <ViewResult />}
-            {!tutorial && !stateGlobal.finish && !localStorage.getItem("loadingExam") ? (
+            {!tutorial && !stateGlobal.finish ? (
               <>
+                <TopExam />
                 <p className="main__ratings_text">
                   Bạn có muốn chinh phục đề thi này ?
                 </p>

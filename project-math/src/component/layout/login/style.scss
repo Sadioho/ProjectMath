@@ -1,8 +1,16 @@
+#root{
+  background-image: url('../../../image/exam-6350373_1920.jpg');
+}
+.bg_login{
+  padding: 3rem 0;
+}
 .login {
+  background-color: white;
+  border-radius: .5rem;
   text-align: center;
   width: 83rem;
   margin: auto;
-  padding: 3rem 0;
+  padding: 3rem 2rem;
   &__title {
     font-size: 2rem;
     padding-bottom: 6rem ;

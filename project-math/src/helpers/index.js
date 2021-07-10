@@ -44,6 +44,16 @@ export const _isEmpty = (obj) => {
   for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) return false;
   }
-
   return true;
+};
+
+export const format_second_to_minutes = (sec) => {
+  let hours = Math.floor(sec / 3600);
+  hours >= 1 ? (sec = sec - hours * 3600) : (hours = "00");
+  let min = Math.floor(sec / 60);
+  min >= 1 ? (sec = sec - min * 60) : (min = "00");
+  sec < 1 ? (sec = "00") : void 0;
+  min.toString().length === 1 ? (min = "0" + min) : void 0;
+  sec.toString().length === 1 ? (sec = "0" + sec) : void 0;
+  return min + ":" + sec;
 };

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { DataApp } from "../../../App";
+import { format_second_to_minutes } from "../../../helpers";
 import Button from "../../common/button/Button";
 import Question from "../question/Question";
 import "./exam.scss";
@@ -46,7 +47,7 @@ function Exam(props) {
               </div>
               <div className="finish__content-box">
                 <p>Thời gian làm bài</p>
-                <h1>{`${stateGlobal.format_second_to_minutes(
+                <h1>{`${format_second_to_minutes(
                   2700 - stateGlobal.timePause
                 )}`}</h1>
               </div>

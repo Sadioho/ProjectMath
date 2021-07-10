@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Redirect, Route ,Switch} from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import "./app.scss";
 import Footer from "./component/layout/footer/Footer";
 import Header from "./component/layout/header/Header";
@@ -19,10 +19,10 @@ function App() {
   const [timeCountDown, setTimeCountDown] = useState(0);
   const [timePause, setTimePause] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [loginSuccess, setloginSuccess] = useState(false);
 
-  const [loginSuccess, setloginSuccess] = useState(false)
-
-
+  const [listUser, setlistUser] = useState([]);
+  const [reload, setreload] = useState()
 
 
   useEffect(() => {
@@ -33,29 +33,27 @@ function App() {
       setData(responseJSON);
       setIsLoading(true);
     }
-    
     fetchListQuestion();
-
-    if(!_isEmpty(localStorage.getItem('my-info'))){
-      setloginSuccess(true)
+    if (!_isEmpty(localStorage.getItem("my-info"))) {
+      setloginSuccess(true);
     }
-    return () => {};
   }, []);
 
-  const format_second_to_minutes = (sec) => {
-    var hours = Math.floor(sec / 3600);
-    hours >= 1 ? (sec = sec - hours * 3600) : (hours = "00");
-    var min = Math.floor(sec / 60);
-    min >= 1 ? (sec = sec - min * 60) : (min = "00");
-    sec < 1 ? (sec = "00") : void 0;
-    min.toString().length === 1 ? (min = "0" + min) : void 0;
-    sec.toString().length === 1 ? (sec = "0" + sec) : void 0;
-    return min + ":" + sec;
-  };
+
+  async function fetchUsers() {
+    const requestUrl = "http://localhost:3000/users";
+    const response = await fetch(requestUrl);
+    const responseJSON = await response.json();
+    setlistUser(responseJSON);
+  }
+  
+  useEffect(() => {
+    fetchUsers()
+  }, [reload]);
 
   return (
     <Router>
-      <Header loginSuccess={loginSuccess} setloginSuccess={setloginSuccess}/>
+      <Header loginSuccess={loginSuccess} setloginSuccess={setloginSuccess} />
       <Route path="/" exact>
         <DataApp.Provider
           value={{
@@ -66,13 +64,14 @@ function App() {
             setShowResult: setShowResult,
             timeCountDown: timeCountDown,
             setTimeCountDown: setTimeCountDown,
-            format_second_to_minutes: format_second_to_minutes,
             finish: finish,
             setFinish: setFinish,
             setTimePause: setTimePause,
             timePause: timePause,
             isLoading: isLoading,
-            
+
+            setreload:setreload,
+            listUser:listUser
           }}
         >
           <Main />
@@ -82,9 +81,9 @@ function App() {
         path="/login"
         render={() => {
           return _isEmpty(localStorage.getItem("my-info")) ? (
-            <Login setloginSuccess={setloginSuccess}/>
+            <Login setloginSuccess={setloginSuccess} listUser={listUser} />
           ) : (
-            <Redirect to="/"  />
+            <Redirect to="/" />
           );
         }}
       ></Route>
@@ -92,7 +91,8 @@ function App() {
         path="/signup"
         render={() => {
           return _isEmpty(localStorage.getItem("my-info")) ? (
-            <Signup setloginSuccess={setloginSuccess}/>
+            <Signup setloginSuccess={setloginSuccess} listUser={listUser
+            } />
           ) : (
             <Redirect to="/" />
           );

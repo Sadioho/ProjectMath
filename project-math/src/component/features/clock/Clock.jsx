@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DataApp } from "../../../App";
+import { format_second_to_minutes } from "../../../helpers";
 
 const Clock = (props) => {
   const stateGlobal = useContext(DataApp);
@@ -24,7 +25,7 @@ const Clock = (props) => {
     };
   }, [timeDown]);
 
-  return <>{stateGlobal.format_second_to_minutes(timeDown)}</>;
+  return <>{format_second_to_minutes(timeDown)}</>;
 };
 
 export default Clock;

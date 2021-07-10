@@ -1,11 +1,13 @@
 .main {
-  padding-bottom: 5rem 0;
+  padding: 5rem ;
   // height: max-content;
   // max-height: 70vh;
   // position: relative;
   &__content {
     padding-right: 3rem;
     &_item {
+      background-color: white;
+
       border-radius: 2rem;
       border: 1px solid rgb(209, 208, 208);
       padding: 2rem;
@@ -14,6 +16,7 @@
   &__ratings {
     height: 40rem;
     border-radius: 0.5rem;
+    
     &_header {
       // color: white;
       padding: 2rem;
@@ -32,52 +35,52 @@
       // padding: 1rem;
     }
   }
-  &__scores{
-    background-color: #3A4BCD;
+  &__scores {
+    background-color: #3a4bcd;
     padding: 1rem 0;
     text-align: center;
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
-    &_title{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    &_title {
       color: white;
     }
   }
-  &__listExam{
+  &__listExam {
     padding: 0 1rem;
     border: 1px solid rgb(212, 212, 212);
-    table{
+    background-color: white;
+
+    table {
       font-size: 1.4rem;
       width: 100%;
-     border-collapse: collapse;
-      th{
+      border-collapse: collapse;
+      th {
         padding: 1rem 0;
-        &:not(:first-child){
+        &:not(:first-child) {
           text-align: center;
         }
-        &:first-child{
+        &:first-child {
           text-align: left;
         }
       }
-      td{
+      td {
         padding: 1rem 0;
-        &:not(:first-child){
+        &:not(:first-child) {
           text-align: center;
         }
-        &:first-child{
+        &:first-child {
           font-weight: bold;
         }
       }
-      tr{
-        &:not(:last-child){
-        border-bottom: 1px solid rgb(214, 214, 214);
-
+      tr {
+        &:not(:last-child) {
+          border-bottom: 1px solid rgb(214, 214, 214);
         }
       }
-     
     }
   }
 }
-.container_overlay{
+.container_overlay {
   background-color: rgba(228, 228, 228, 0.308);
   position: absolute;
   width: 100%;
@@ -88,7 +91,7 @@
 
   .overlay {
     position: absolute;
-    border-radius: 1rem; 
+    border-radius: 1rem;
     width: 40rem;
     text-align: center;
     padding: 2rem;
@@ -98,7 +101,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 43px 1px rgba(0, 0, 0, 0.2);
-    
+
     &__content {
       padding: 1rem;
       &-title {
