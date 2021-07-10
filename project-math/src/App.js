@@ -22,8 +22,7 @@ function App() {
   const [loginSuccess, setloginSuccess] = useState(false);
 
   const [listUser, setlistUser] = useState([]);
-  const [reload, setreload] = useState()
-
+  const [reload, setreload] = useState();
 
   useEffect(() => {
     async function fetchListQuestion() {
@@ -39,21 +38,25 @@ function App() {
     }
   }, []);
 
-
   async function fetchUsers() {
     const requestUrl = "http://localhost:3000/users";
     const response = await fetch(requestUrl);
     const responseJSON = await response.json();
     setlistUser(responseJSON);
   }
-  
+
   useEffect(() => {
-    fetchUsers()
+    fetchUsers();
   }, [reload]);
 
   return (
     <Router>
-      <Header loginSuccess={loginSuccess} setloginSuccess={setloginSuccess} />
+      <Header
+        setFinish={setFinish}
+        loginSuccess={loginSuccess}
+        setloginSuccess={setloginSuccess}
+        setListResult={setListResult}
+      />
       <Route path="/" exact>
         <DataApp.Provider
           value={{
@@ -70,8 +73,8 @@ function App() {
             timePause: timePause,
             isLoading: isLoading,
 
-            setreload:setreload,
-            listUser:listUser
+            setreload: setreload,
+            listUser: listUser,
           }}
         >
           <Main />
@@ -91,8 +94,7 @@ function App() {
         path="/signup"
         render={() => {
           return _isEmpty(localStorage.getItem("my-info")) ? (
-            <Signup setloginSuccess={setloginSuccess} listUser={listUser
-            } />
+            <Signup setloginSuccess={setloginSuccess} listUser={listUser} setreload={setreload}/>
           ) : (
             <Redirect to="/" />
           );

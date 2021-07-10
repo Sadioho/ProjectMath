@@ -1,15 +1,16 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-
-import { _isEmpty } from "../../../helpers";
 import Logo from "../../../image/trac-nghiem-online.png";
 import "./header.scss";
+
 
 function Header(props) {
   const history = useHistory();
   const jwt = JSON.parse(localStorage.getItem("my-info"));
   function signout() {
     props.setloginSuccess(false)
+    props.setFinish(false)
+    props.setListResult([])
     localStorage.removeItem("my-info");
     history.push("/login");
   }

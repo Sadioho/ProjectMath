@@ -32,6 +32,7 @@ function Main(props) {
     setTutorial(false);
     setExam(false);
     //reload top exam
+    
     let time = 2700 - stateGlobal.timePause;
     let point = stateGlobal.showResult * 2.5;
     let count = countResult(stateGlobal.listResult, stateGlobal.data, 0);
@@ -40,12 +41,14 @@ function Main(props) {
       time: time,
       point: point,
     };
-    
+
+    console.log("point",point);
+
     let checkPoint = stateGlobal.listUser.find((item) => item.id === id);
 
     stateGlobal.setreload(ramdomID);
     stateGlobal.setShowResult(count);
-    if (checkPoint.point == null && checkPoint.time == null) {
+    if (checkPoint.point === null && checkPoint.time === null) {
       await fetch(`http://localhost:3000/users/${id}`, {
         method: "PATCH",
         body: JSON.stringify(dataPatch),
@@ -54,6 +57,7 @@ function Main(props) {
           Accept: "application/json",
         },
       });
+
     } else {
       if (checkPoint.point < point) {
         await fetch(`http://localhost:3000/users/${id}`, {

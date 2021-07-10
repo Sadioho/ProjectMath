@@ -41,7 +41,7 @@ export default function TopExam() {
         </table>
         {number < arrUser.length && (
           <div className="view">
-            <span onClick={() => setnumber(arrUser.length)}>Xem Thêm</span>
+            <span onClick={() => setnumber(10)}>Xem Thêm</span>
           </div>
         )}
       </div>

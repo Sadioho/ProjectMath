@@ -36,6 +36,8 @@ export default function Login(props) {
       seterrorsCheckAccount(false);
       console.log("trùng");
     } else {
+    let ramdomID = Math.random().toString(36).substring(7);
+
       let apiUser = await fetch("http://localhost:3000/users", {
         method: "POST",
         body: JSON.stringify(data2),
@@ -49,6 +51,7 @@ export default function Login(props) {
       setSignupSuccess(true);
       seterrorsCheckAccount(true);
       props.setloginSuccess(true);
+      props.setreload(ramdomID)
       history.push("/");
     }
   }
