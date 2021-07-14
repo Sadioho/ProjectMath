@@ -1,14 +1,14 @@
 .footer {
-  font-size: 1.3rem;
-  background-color: #3a4bcd;
-  // margin-top: 5rem;
+  font-size: 13px;
+  background-color: #09a6f3;
+  // margin-top: 5rem; 
   &__logo {
       text-align: center;
-      padding: 5rem 0;
+      padding: 50px 0;
       
   }
   &__widget {
-    padding: 5rem 0;
+    padding: 50px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.692);
     border-bottom: 1px solid rgba(255, 255, 255, 0.692);
   }

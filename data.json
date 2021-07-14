@@ -301,6 +301,16 @@
       "time": 3,
       "point": 0,
       "id": 6
+    },
+    {
+      "firstName": "Anh",
+      "lastName": "Hồ",
+      "email": "hoxuananh93.3@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "time": null,
+      "point": null,
+      "id": 7
     }
   ]
 }

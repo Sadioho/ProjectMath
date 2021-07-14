@@ -3,13 +3,14 @@ import Back from "../../../image/back-question-icon.png";
 import Checkbox from "../../../image/checkbox-icon.png";
 import Next from "../../../image/next-question-icon.png";
 import Radio from "../../../image/radio-icon.png";
-import Button from "../../common/button/Button";
+import ButtonV2 from "../../common/button/ButtonV2";
 import DetailQuestion from "../detailquestion/DetailQuestion";
 import "./tutorial.scss";
+
 function Tutorial(props) {
-  const loadingExam=()=>{
+  const loadingExam = () => {
     props.setExam(true);
-  }
+  };
   return (
     <>
       {props.exam === false ? (
@@ -42,7 +43,7 @@ function Tutorial(props) {
                   Chuyển qua <b>câu kế tiếp</b>
                 </p>
               </div>
-            </div> 
+            </div>
             <div className="tutorial__note">
               <h1>Lưu ý:</h1>
               <p>
@@ -55,14 +56,21 @@ function Tutorial(props) {
               </p>
             </div>
           </div>
-          <Button
+
+          <ButtonV2
             onClick={loadingExam}
-            className="btn-yellow btn-medium"
-            content="BẮT ĐẦU THI"
-          />
+            background="#66bb6a"
+            backgroundColor="#81c784"
+          >
+            Bắt Đầu Thi
+          </ButtonV2>
         </>
       ) : (
-        <DetailQuestion handleFinish={props.handleFinish} setOverLay={props.setOverLay} handleFinishV2={props.handleFinishV2}  />
+        <DetailQuestion
+          handleFinish={props.handleFinish}
+          setOverLay={props.setOverLay}
+          handleFinishV2={props.handleFinishV2}
+        />
       )}
     </>
   );

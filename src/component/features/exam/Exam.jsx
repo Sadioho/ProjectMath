@@ -1,29 +1,12 @@
 import React, { useContext } from "react";
 import { DataApp } from "../../../App";
 import { format_second_to_minutes } from "../../../helpers";
-// import Button from "../../common/button/Button";
+import ButtonV2 from "../../common/button/ButtonV2";
 import Question from "../question/Question";
 import "./exam.scss";
-import { Button, makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    color: "white",
-    border: "none",
-    fontSize: 15,
-    background: "#FFC25B",
-    margin: "auto",
-    display: "block",
-  },
-  reset:{
-    color:"white",
-    fontSize:20,
-    
-  }
-}));
 function Exam(props) {
   const stateGlobal = useContext(DataApp);
-  const classes = useStyles();
   return (
     <>
       <div className="exam">
@@ -36,25 +19,19 @@ function Exam(props) {
             <span> 45 phút</span>
           </i>
         </div>
+
         {stateGlobal.finish === false ? (
           <>
             <div className="exam__question">
               <Question />
             </div>
-            {/* <Button
+            <ButtonV2
               onClick={props.handleClick}
-              className="btn-yellow btn-medium"
-              content="BẮT ĐẦU THI"
-            /> */}
-            <Button
-              classes={{ root: classes.root }}
-              variant="contained"
-              color="primary"
-              onClick={props.handleClick}
-              size="large"
+              background="#66bb6a"
+              backgroundColor="#81c784"
             >
-              BẮT ĐẦU THI
-            </Button>
+              Bắt Đầu Thi
+            </ButtonV2>
           </>
         ) : (
           <div className="finish">
@@ -88,7 +65,6 @@ function Exam(props) {
                 <h1>Chúc mừng bạn đã hoàn thành phần thi! 😂😂😂</h1>
               </div>
             )}
-           
           </div>
         )}
       </div>

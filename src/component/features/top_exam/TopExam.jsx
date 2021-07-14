@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { DataApp } from "../../../App";
 import { format_second_to_minutes } from "../../../helpers";
+import ButtonV2 from "../../common/button/ButtonV2";
 import "./style.scss";
 
 export default function TopExam() {
@@ -13,7 +14,7 @@ export default function TopExam() {
   return (
     <>
       <div className="main__scores">
-        <h1 className="main__scores_title">Top 10/3000 lượt thi</h1>
+        <h3 className="main__scores_title">Top Lượt Thi</h3>
       </div>
       <div className="main__listExam">
         <table>
@@ -39,10 +40,16 @@ export default function TopExam() {
               )}
           </tbody>
         </table>
-        {number < arrUser.length && (
-          <div className="view">
-            <span onClick={() => setnumber(10)}>Xem Thêm</span>
-          </div>
+        {number > 5 && number <= 10 && (
+          <ButtonV2
+            width="37"
+            height="35"
+            background="#4caf50"
+            backgroundColor="#66bb6a"
+            onClick={() => setnumber(10)}
+          >
+            Xem thêm
+          </ButtonV2>
         )}
       </div>
     </>

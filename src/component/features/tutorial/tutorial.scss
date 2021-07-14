@@ -2,13 +2,13 @@
   box-sizing: border-box;
   width: 100%;
   margin: 3rem 0;
-  background-color: #ffebc9;
+  background-color: #b7e4c7;
   border-radius: 1rem;
-  border: 1px solid #fb8226 ;
+  border: 1px solid #74c69d;
   &__heading {
     text-align: center;
     font-size: 2.2rem;
-    color: #ff913c;
+    color: #40916c;
     padding: 2.8rem 0;
   }
   &__detail {
@@ -19,7 +19,7 @@
       font-size: 1.5rem;
       padding: 2rem 0;
       &:not(:last-child) {
-        border-bottom: 1px solid #ff913c;
+        border-bottom: 1px solid #40916c;
       }
       .one {
         margin-left: 1.7rem;
@@ -29,12 +29,12 @@
       padding-right: 2rem;
     }
   }
-  &__note{
-      font-size: 1.5rem;
-      padding:3rem;
-      
-      h1{
-          color: #fb8226;
-      }
+  &__note {
+    font-size: 1.5rem;
+    padding: 3rem;
+
+    h1 {
+      color: #40916c;
+    }
   }
 }

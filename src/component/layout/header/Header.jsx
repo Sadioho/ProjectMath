@@ -1,88 +1,88 @@
+import { makeStyles } from "@material-ui/core";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import Logo from "../../../image/trac-nghiem-online.png";
+import ButtonV2 from "../../common/button/ButtonV2";
 import "./header.scss";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
 
+  textDe: {
+    textDecoration: "none",
+  },
+}));
 function Header(props) {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("my-info"));
+  const classes = useStyles();
+
   function signout() {
-    props.setloginSuccess(false)
-    props.setFinish(false)
-    props.setListResult([])
+    props.setloginSuccess(false);
+    props.setFinish(false);
+    props.setListResult([]);
     localStorage.removeItem("my-info");
     history.push("/login");
   }
   return (
-    <header className="header">
-      <div className="container">
-        <div className="row align-items-center">
-          <div className="header__logo ">
-            <Link to="/">
-              <img src={Logo} alt="" />
-            </Link>
-          </div>
-          <div className="header__navbar">
-            <div className="header__nav">
-              <nav>
-                <ul className="header__nav_item">
-                  <li>
-                    <a href="http://#">THI THPTQG</a>
-                  </li>
-                  <li>
-                    <a href="http://#">ĐỀ KIỂM TRA</a>
-                  </li>
-                  <li>
-                    <a href="http://#">ENGLISH TEST</a>
-                  </li>
-                  <li>
-                    <a href="http://#">IT TEST</a>
-                  </li>
-                  <li>
-                    <a href="http://#">ĐẠI HỌC</a>
-                  </li>
-                  <li>
-                    <a href="http://#"> HƯỚNG NGHIỆP</a> 
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div className="header__login">
-              { props.loginSuccess ? (
-                <div className="login-success">
-                  <label htmlFor="check-logout">
-                  <div className="username  button-sigin">
-                    <span>
-                      {user.firstName} {user.lastName}
-                    </span>
-                    <i className="header__login_icon  fas fa-user-tie"></i>
-                  </div>
-                  </label>
-                  <input type="checkbox" id="check-logout"/>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h3" className={classes.title}>
+          <Link to="/">
+            <img src={Logo} alt="" />
+          </Link>
+        </Typography>
 
-                  <div onClick={signout} className="signup ">
-                    <i className=" fas fa-sign-out-alt"></i>
-                    <span> Đăng xuất</span>
-                  </div>
-                </div>
-              ) : (
-                <Link to="/login">
-                  <span>Đăng nhập</span>
-                  <i className="header__login_icon  fas fa-user-tie"></i>
-                </Link>
-              )}
+        {props.loginSuccess ? (
+          <>
+            <div className="username sigup">
+              <span>
+                {user.firstName} {user.lastName}
+              </span>
+              <i className="header__login_icon  fas fa-user-tie"></i>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="header__breadcrumb">
-        <div className="container">
-          <h3>ĐỀ KIỂM TRA</h3>
-        </div>
-      </div>
-    </header>
+            <ButtonV2
+              width="130px"
+              borderRadius="40px 0px 69px 40px "
+              padding="10px"
+              height="unset"
+              background="unset"
+              color="black"
+              backgroundColor="#09A6F3"
+              onClick={signout}
+            >
+              Đăng Xuất
+            </ButtonV2>
+          </>
+        ) : (
+          <Link to="/login" className={classes.textDe}>
+            <ButtonV2
+              width="130px"
+              borderRadius="0px 40px 40px 69px / 3px 40px 40px 75px "
+              padding="10px"
+              height="unset"
+              background="unset"
+              color="black"
+              backgroundColor="#09A6F3"
+            >
+              Đăng nhập
+            </ButtonV2>
+          </Link>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 

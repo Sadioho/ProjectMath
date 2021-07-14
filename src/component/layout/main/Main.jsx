@@ -2,20 +2,22 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { DataApp } from "../../../App";
 import { countResult, format_second_to_minutes } from "../../../helpers";
-import Button from "../../common/button/Button";
 import Exam from "../../features/exam/Exam";
 import TopExam from "../../features/top_exam/TopExam";
 import Tutorial from "../../features/tutorial/Tutorial";
 import "./main.scss";
 import { Spinner } from "../../spinner/Spinner";
 import { ViewResult } from "../../features/ViewResult/ViewResult";
+import ButtonV2 from "../../common/button/ButtonV2";
+import  Box  from "@material-ui/core/Box/";
+
 
 function Main(props) {
   const stateGlobal = useContext(DataApp);
-  let history = useHistory();
   const [overLay, setOverLay] = useState(false);
   const [tutorial, setTutorial] = useState(false);
   const [exam, setExam] = useState(false);
+  let history = useHistory();
 
   function handleClick() {
     if (!localStorage.getItem("my-info")) {
@@ -26,14 +28,13 @@ function Main(props) {
   }
 
   async function handleFinishV2() {
-
     let ramdomID = Math.random().toString(36).substring(7);
     stateGlobal.setFinish(true);
     setOverLay(false);
     setTutorial(false);
     setExam(false);
     //reload top exam
-    
+
     let time = 2700 - stateGlobal.timePause;
     let point = stateGlobal.showResult * 1;
     let count = countResult(stateGlobal.listResult, stateGlobal.data, 0);
@@ -43,7 +44,7 @@ function Main(props) {
       point: point,
     };
 
-    console.log("point",point);
+    console.log("point", point);
 
     let checkPoint = stateGlobal.listUser.find((item) => item.id === id);
 
@@ -57,9 +58,7 @@ function Main(props) {
           Accept: "application/json",
         },
       });
-    stateGlobal.setreload(ramdomID);
-
-
+      stateGlobal.setreload(ramdomID);
     } else {
       if (checkPoint.point < point) {
         await fetch(`http://localhost:3000/users/${id}`, {
@@ -70,8 +69,7 @@ function Main(props) {
             Accept: "application/json",
           },
         });
-    stateGlobal.setreload(ramdomID);
-
+        stateGlobal.setreload(ramdomID);
       }
       if (checkPoint.point === point) {
         if (checkPoint.time > time) {
@@ -82,9 +80,8 @@ function Main(props) {
               "Content-Type": "application/json",
               Accept: "application/json",
             },
-          }); 
-    stateGlobal.setreload(ramdomID);
-
+          });
+          stateGlobal.setreload(ramdomID);
         }
       }
     }
@@ -109,34 +106,26 @@ function Main(props) {
                   {stateGlobal.data.length - stateGlobal.listResult.length > 0
                     ? `Bạn còn  ${
                         stateGlobal.data.length - stateGlobal.listResult.length
-                      }  câu chưa trả lời 😩😩`
+                      }  câu chưa trả lời 😩`
                     : "Bạn đã làm xong bài thi 😍"}
                 </h3>
                 <p>
                   Thời gian còn ⌚{" "}
                   {format_second_to_minutes(stateGlobal.timePause)}
                 </p>
-                <p>Bạn đồng ý nộp bài ✅</p>
+                <p>Bạn đồng ý nộp bài ?? </p>
               </div>
               <div className="overlay__button">
-                <Button
-                  onClick={() => handleFinishV2()}
-                  content="Nộp bài 📑"
-                  className="btn-yellow btn-overlay "
-                />
-                <Button
-                  onClick={() => setOverLay(false)}
-                  content="Làm tiếp 🎮"
-                  className="btn-blue btn-overlay"
-                />
+                <ButtonV2 onClick={() => handleFinishV2()}  margin="0 3px" background="#09a6f3" backgroundColor="#90E0EF">Nộp bài</ButtonV2>
+                <ButtonV2 onClick={() => setOverLay(false)} margin="0 3px" background="#66bb6a" backgroundColor="#81c784">Làm tiếp</ButtonV2>
               </div>
             </div>
           </div>
         )}
         <div className="row align-items-start">
           <div className="col-8 main__content">
-            <div className="main__content_item">
-              {!stateGlobal.isLoading ? (
+            <Box boxShadow={2} borderRadius={16} p={2}>
+            {!stateGlobal.isLoading ? (
                 <Spinner />
               ) : tutorial === false ? (
                 <Exam handleClick={handleClick} />
@@ -149,7 +138,7 @@ function Main(props) {
                   handleFinish={handleFinish}
                 />
               )}
-            </div>
+            </Box>
           </div>
           <div className="col-4 main__ratings">
             {stateGlobal.finish && <ViewResult />}
@@ -160,15 +149,12 @@ function Main(props) {
                   Bạn có muốn chinh phục đề thi này ?
                 </p>
                 <div className="main__ratings_main">
-                  <Button
-                    onClick={handleClick}
-                    className="btn-yellow btn-max "
-                    content="Có, tôi muốn thi?"
-                  />
-                  <Button
-                    className="btn-blue btn-max"
-                    content="Chia sẻ lên facebook"
-                  />
+                  <ButtonV2  background="#66bb6a" backgroundColor="#81c784">
+                    Có, tôi muốn thi?
+                  </ButtonV2>
+                  <ButtonV2 background="#09a6f3" backgroundColor="#90E0EF" padding="0">
+                    Share To Facebook
+                  </ButtonV2>
                 </div>
               </>
             ) : (

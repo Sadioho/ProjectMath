@@ -36,7 +36,7 @@
     }
   }
   &__toolbars{
-    background-color: #065592;
+    background-color: #48CAE4;
     padding:1rem;
     margin-top: 3rem;
 
@@ -94,7 +94,7 @@
     }
   }
   .list__answer {
-    background-color: #00335A;
+    background-color: #00B4D8;
     width: 100%;
     margin-top: 1rem;
     &-header {
@@ -123,14 +123,16 @@
         margin: 1%;
         transition: all 0.5s;
         &:hover {
-          background-color: rgb(255, 247, 128);
+          background-color: #EF476F;
         }
       }
       .review{
-        background-color: #ffdeb7 !important;
+        background-color: #FFD166 !important;
+        color: white;
       }
       .result{
-        background-color: #9dd5fb !important;
+        background-color: #06D6A0!important;
+        color:  white;
       }
     }
   }

@@ -1,13 +1,12 @@
 .main {
-  padding: 5rem ;
+  padding: 50px ;
   // height: max-content;
   min-height: 80vh;
   // position: relative;
   &__content {
-    padding-right: 3rem;
+    padding-right: 30px;
     &_item {
       background-color: white;
-
       border-radius: 2rem;
       border: 1px solid rgb(209, 208, 208);
       padding: 2rem;
@@ -26,7 +25,7 @@
     }
     &_text {
       text-align: center;
-      font-size: 1.3rem;
+      font-size: 15px;
       color: red;
       padding: 1rem 0;
     }
@@ -35,7 +34,7 @@
     }
   }
   &__scores {
-    background-color: #3a4bcd;
+    background-color: #09a6f3;
     padding: 1rem 0;
     text-align: center;
     border-top-left-radius: 0.5rem;
@@ -50,7 +49,6 @@
     background-color: white;
 
     table {
-      font-size: 1.4rem;
       width: 100%;
       border-collapse: collapse;
       th {

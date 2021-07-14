@@ -1,14 +1,26 @@
+import { Typography } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 import React, { useContext } from "react";
 import { DataApp } from "../../../App";
-import "./question.scss"; 
+
 function Question(props) {
-  const stateGlobal=useContext(DataApp)
+  const stateGlobal = useContext(DataApp);
 
   return stateGlobal.data.map((item) => (
-    <div className="question" key={item.id}>
-      <p className="question__title">{item.name}</p>
-      <p className="question__content">{item.question}</p>
-    </div>
+    <Box
+      key={item.id}
+      borderRadius={16}
+      boxShadow={1}
+      p={2}
+      m={1}
+    >
+      <Typography variant="subtitle1" >
+        {item.name}
+      </Typography>
+      <Typography variant="subtitle1" >
+        {item.question}
+      </Typography>
+    </Box>
   ));
 }
 
