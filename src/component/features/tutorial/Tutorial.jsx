@@ -45,7 +45,7 @@ function Tutorial(props) {
               </div>
             </div>
             <div className="tutorial__note">
-              <h1>Lưu ý:</h1>
+              <h2>Lưu ý:</h2>
               <p>
                 Những câu <b>chưa chọn đáp án</b> sẽ được tính là{" "}
                 <b>câu trả lời sai</b>

@@ -1,5 +1,5 @@
 .detail_question {
-  padding: 2rem;
+  padding: 20px;
   .question {
     border-bottom: none;
     padding: 0;
@@ -7,7 +7,7 @@
   }
   &__result {
     &_item {
-      font-size: 1.5rem;
+      font-size: 15px;
       border: 1px solid rgba(177, 177, 177, 0.685);
       border-radius: 0.5rem;
       padding-left: 2rem;
@@ -37,14 +37,14 @@
   }
   &__toolbars{
     background-color: #48CAE4;
-    padding:1rem;
-    margin-top: 3rem;
+    padding:10px;
+    margin-top: 10px;
 
 
   }
   &__toolbar {
     border-radius: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 15px;
     display: flex;
     justify-content: space-between;
     &_item-1,
@@ -54,44 +54,24 @@
     }
     &_item-1 {
       .time {
-        background-color: gainsboro;
+        background-color: #E63946;
+        color: white;
         padding: 0.4rem 1rem;
-        border-radius: 0.5rem;
+        border-radius: 5px;
       }
     }
     .check {
       display: flex;
       align-items: center;
-      margin-left: 3rem;
+      margin-left:10px;
       color: white;
       label,
       input {
         cursor: pointer;
-        margin: 0 1rem 0 0.5rem;
+        margin: 0 1rem 0 5px;
       }
     }
-    .btn-back,
-    .btn-next {
-      padding: 1rem;
-      width: 4.2rem;
-      height: 3.2rem;
-      border: none;
-      outline: none;
-      background-position: center;
-      background-size: cover;
-      border-radius: .5rem;
-      cursor: pointer;
-      margin-right: 2rem;
-      &:hover {
-        opacity: 0.9;
-      }
-    }
-    .btn-back {
-      background-image: url("../../../image/back-question-icon.png");
-    }
-    .btn-next {
-      background-image: url("../../../image/next-question-icon.png");
-    }
+
   }
   .list__answer {
     background-color: #00B4D8;
@@ -104,7 +84,7 @@
       padding: 1rem;
     }
     &-title {
-      font-size: 1.6rem;
+      font-size: 16px;
       color: white;
     }
     &-item {
@@ -112,11 +92,11 @@
       flex-wrap: wrap;
 
       .box {
-        font-size: 1.3rem;
+        font-size: 13px;
         cursor: pointer;
         width: 9.1%;
         text-align: center;
-        padding: 0.5rem 2rem;
+        padding: 5px 20px;
         display: inline-block;
         background-color: rgb(255, 255, 255);
         border-radius: 0.5rem;
@@ -142,7 +122,7 @@
     align-items: center;
 
     img{
-      width: 3rem;
+      width: 30px;
       &:hover{
         opacity: .9;
       }

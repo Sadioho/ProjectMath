@@ -1,5 +1,6 @@
 import {
   Box,
+  Checkbox,
   FormControlLabel,
   makeStyles,
   Radio,
@@ -66,7 +67,12 @@ function DetailQuestion(props) {
   return (
     <div className="detail_question">
       <div key={stateGlobal.data[numberQuestion].id}>
-        <Box borderRadius={16} boxShadow={1} p={2} fontSize={14} >
+        <Box
+          borderRadius={5}
+          variant="outlined"
+          border="0.5px solid #DEE2E6"
+          p={2}
+        >
           <Typography variant="body2" component="h2">
             {stateGlobal.data[numberQuestion].name}
           </Typography>
@@ -111,22 +117,25 @@ function DetailQuestion(props) {
               </i>
             </div>
             <div className="check">
-              <input
-                type="checkbox"
-                id="check"
-                checked={defaultChecked(
-                  listReview,
-                  stateGlobal.data[numberQuestion],
-                  null
-                )}
-                onChange={(e) =>
-                  setCheck(
-                    e.target.checked,
-                    stateGlobal.data[numberQuestion].id
-                  )
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={defaultChecked(
+                      listReview,
+                      stateGlobal.data[numberQuestion],
+                      null
+                    )}
+                    onChange={(e) =>
+                      setCheck(
+                        e.target.checked,
+                        stateGlobal.data[numberQuestion].id
+                      )
+                    }
+                    name="checkedA"
+                  />
                 }
+                label="Xem Lại"
               />
-              <label htmlFor="check"> Xem lại</label>
             </div>
           </div>
           <div className="detail_question__toolbar_item-2">
@@ -139,6 +148,7 @@ function DetailQuestion(props) {
                 height="35px"
                 margin="0 3px"
                 color="black"
+                padding="5px 0px"
               >
                 <ArrowBackIcon />
               </ButtonV2>
@@ -154,6 +164,7 @@ function DetailQuestion(props) {
                 height="35px"
                 margin="0 3px"
                 color="black"
+                padding="5px 0px"
               >
                 <ArrowForwardIcon />
               </ButtonV2>

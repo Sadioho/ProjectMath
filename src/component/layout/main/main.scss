@@ -7,9 +7,9 @@
     padding-right: 30px;
     &_item {
       background-color: white;
-      border-radius: 2rem;
+      border-radius: 20px;
       border: 1px solid rgb(209, 208, 208);
-      padding: 2rem;
+      padding: 20px;
     }
   }
   &__ratings {
@@ -18,7 +18,7 @@
     
     &_header {
       // color: white;
-      padding: 2rem;
+      padding: 20px;
       text-align: center;
       background-color: #f6f6f6;
       border-radius: 0.5rem;
@@ -30,7 +30,7 @@
       padding: 1rem 0;
     }
     &_main {
-      font-size: 1.2rem;
+      font-size: 1.20px;
     }
   }
   &__scores {
@@ -55,7 +55,7 @@
         padding: 1rem 0;
         &:not(:first-child) {
           text-align: center;
-        }
+        } 
         &:first-child {
           text-align: left;
         }
@@ -89,9 +89,9 @@
   .overlay {
     position: absolute;
     border-radius: 1rem;
-    width: 40rem;
+    width: 400px;
     text-align: center;
-    padding: 2rem;
+    padding: 20px;
     background-color: rgb(255, 255, 255);
     z-index: 1000;
     top: 30%;
@@ -102,10 +102,10 @@
     &__content {
       padding: 1rem;
       &-title {
-        font-size: 2.2rem;
+        font-size: 25px;
       }
       p {
-        font-size: 1.3rem;
+        font-size: 15px;
       }
     }
     &__button {
@@ -113,7 +113,7 @@
       justify-content: space-evenly;
       .btn-overlay {
         width: 13rem;
-        padding: 1.2rem 0;
+        padding: 1.20px 0;
       }
     }
   }

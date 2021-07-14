@@ -7,15 +7,15 @@
   align-items: center;
   width: 130px;
   border-radius: 0px 40px 40px 69px / 3px 40px 40px 75px;
-  padding: 0.3rem;
+  padding: 4.9px;
   height: unset;
   color: black;
-  font-size: 1.4rem;
+  font-size: 15px;
   cursor: pointer;
-  padding-left: 2rem;
+  padding-left: 20px;
   transition: all 0.5s;
   box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.1);
-  margin: 0 2rem;
+  margin: 0 20px;
   &:hover {
     background: #09a6f3;
     color: white;
@@ -45,9 +45,9 @@
 }
 
 .header__login_icon {
-  font-size: 1.5rem;
+  font-size: 15px;
   color: white;
   background-color: #0096c7;
-  padding: 1rem;
+  padding: 10px;
   border-radius: 50%;
 }

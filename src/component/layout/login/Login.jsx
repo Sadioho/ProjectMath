@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,11 +10,12 @@ import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import "./style.scss";
-import {Spinner2} from "../../spinner/Spinner2"
+import { Spinner2 } from "../../spinner/Spinner2";
+import ButtonV2 from "../../common/button/ButtonV2";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    margin:theme.spacing(3,'auto'),
+    margin: theme.spacing(3, "auto"),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -27,23 +28,15 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: theme.spacing(1),
   },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    padding: theme.spacing(2),
-    fontSize: 13,
-    fontWeight:"bold"
-  },
   fonts: {
     fontSize: 13,
     textDecoration: "none",
-    fontWeight:"bold",
-    color:"black",
-    '&:hover': {
-      color:"#757ce8",
-    }
-
+    fontWeight: "bold",
+    color: "black",
+    "&:hover": {
+      color: "#757ce8",
+    },
   },
-  
 }));
 
 const schema = yup.object().shape({
@@ -55,7 +48,7 @@ export default function Login(props) {
   const [loginError, setLoginError] = useState(false);
 
   const classes = useStyles();
-  
+
   let history = useHistory();
 
   const {
@@ -131,15 +124,7 @@ export default function Login(props) {
           <p className="login__errors">
             {loginError && "Tài khoản or mật khẩu không chính xác"}
           </p>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            fullWidth
-          >
-            Đăng Nhập
-          </Button>
+          <ButtonV2 type="submit" width="100%" background="#09a6f3" backgroundColor="rgb(144, 224, 239)" height="55px">Đăng Nhập</ButtonV2>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2" className={classes.fonts}>
@@ -158,4 +143,3 @@ export default function Login(props) {
     </Box>
   );
 }
-

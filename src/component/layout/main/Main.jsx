@@ -115,7 +115,7 @@ function Main(props) {
                 </p>
                 <p>Bạn đồng ý nộp bài ?? </p>
               </div>
-              <div className="overlay__button">
+              <div className="overlay__button"> 
                 <ButtonV2 onClick={() => handleFinishV2()}  margin="0 3px" background="#09a6f3" backgroundColor="#90E0EF">Nộp bài</ButtonV2>
                 <ButtonV2 onClick={() => setOverLay(false)} margin="0 3px" background="#66bb6a" backgroundColor="#81c784">Làm tiếp</ButtonV2>
               </div>
